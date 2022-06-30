@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val thr = Thread(kotlinx.coroutines.Runnable {
-            //seventhDBUseCase.execute(this)
+            seventhDBUseCase.execute(this)
             println(111111110)
             eighthDBUseCase.execute(this, userDataModel = UserDataModel("w","3"))
             println(11111111)

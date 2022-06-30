@@ -10,8 +10,8 @@ interface UserDao {
     @Insert
     fun insert(genre: UserModel)
 
-    @Delete
-    fun delete(genre: UserModel)
+    @Query("DELETE FROM UserModel")
+    fun delete()
 
     @Update
     fun update(genre: UserModel);

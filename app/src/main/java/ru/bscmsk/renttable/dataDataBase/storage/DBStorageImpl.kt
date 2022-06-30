@@ -22,26 +22,26 @@ class DBStorageImpl : DBStorage{
     }
 
     override fun clearUserDB() {
-        myData.accessTokenDao().delete(myData.accessTokenDao().get())
-        myData.refreshTokenDao().delete(myData.refreshTokenDao().get())
-        myData.cityDao().delete(myData.cityDao().get())
-        myData.userDao().delete(myData.userDao().get())
+        clearAccessTokenTable()
+        clearRefreshTokenTable()
+        clearCityTable()
+        clearUserTable()
     }
 
     override fun clearAccessTokenTable() {
-        myData.accessTokenDao().delete(myData.accessTokenDao().get())
+        myData.accessTokenDao().delete()
     }
 
     override fun clearRefreshTokenTable() {
-        myData.refreshTokenDao().delete(myData.refreshTokenDao().get())
+        myData.refreshTokenDao().delete()
     }
 
     override fun clearCityTable() {
-        myData.cityDao().delete(myData.cityDao().get())
+        myData.cityDao().delete()
     }
 
     override fun clearUserTable() {
-        myData.userDao().delete(myData.userDao().get())
+        myData.userDao().delete()
     }
 
     override fun saveTokensToDB(tokens: TokensModel){

@@ -10,8 +10,8 @@ interface CityDao {
     @Insert
     fun insert(genre: CityModel)
 
-    @Delete
-    fun delete(genre: CityModel)
+    @Query("DELETE FROM CityModel")
+    fun delete()
 
     @Update
     fun update(genre: CityModel);

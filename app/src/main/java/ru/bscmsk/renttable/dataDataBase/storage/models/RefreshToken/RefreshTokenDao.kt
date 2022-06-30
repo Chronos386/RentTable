@@ -10,8 +10,8 @@ interface RefreshTokenDao {
     @Insert
     fun insert(genre: RefreshTokenModel)
 
-    @Delete
-    fun delete(genre: RefreshTokenModel)
+    @Query("DELETE FROM RefreshTokenModel")
+    fun delete()
 
     @Update
     fun update(genre: RefreshTokenModel);

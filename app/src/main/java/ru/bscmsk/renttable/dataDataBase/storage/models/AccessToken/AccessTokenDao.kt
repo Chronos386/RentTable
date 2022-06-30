@@ -11,8 +11,8 @@ interface AccessTokenDao {
     @Insert
     fun insert(genre: AccessTokenModel)
 
-    @Delete
-    fun delete(genre: AccessTokenModel)
+    @Query("DELETE FROM AccessTokenModel")
+    fun delete()
 
     @Update
     fun update(genre: AccessTokenModel);
