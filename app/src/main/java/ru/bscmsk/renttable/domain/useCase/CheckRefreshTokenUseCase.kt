@@ -1,11 +1,11 @@
 package ru.bscmsk.renttable.domain.useCase
 
-import ru.bscmsk.renttable.domain.models.RefreshTokensDataModel
+import ru.bscmsk.renttable.domain.models.RefreshTokenDataModel
 import ru.bscmsk.renttable.domain.models.TokensDataModel
-import ru.bscmsk.renttable.domain.repository.NetworkTokenRepository
+import ru.bscmsk.renttable.domain.repository.UserRepository
 
-class CheckRefreshTokenUseCase(private val networkTokenRepo: NetworkTokenRepository) {
-    suspend fun execute(token: RefreshTokensDataModel): TokensDataModel {
-        return networkTokenRepo.refreshTokens(token = token)
+class CheckRefreshTokenUseCase(private val userRepo: UserRepository) {
+    suspend fun execute(token: RefreshTokenDataModel): TokensDataModel? {
+        return userRepo.refreshTokens(token = token)
     }
 }
