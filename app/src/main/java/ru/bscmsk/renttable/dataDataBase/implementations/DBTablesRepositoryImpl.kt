@@ -1,13 +1,15 @@
 package ru.bscmsk.renttable.dataDataBase.implementations
 
-import android.content.Context
-import ru.bscmsk.renttable.dataDataBase.storage.DBStorage
+import ru.bscmsk.renttable.dataDataBase.storage.CityStorage
+import ru.bscmsk.renttable.dataDataBase.storage.UserStorage
 import ru.bscmsk.renttable.domain.repository.DBTablesRepository
 
-class DBTablesRepositoryImpl(private val dbStorage: DBStorage) :
+class DBTablesRepositoryImpl(private val userStorage: UserStorage, private val cityStorage: CityStorage) :
     DBTablesRepository {
-    override fun clearDB(context: Context){
-        dbStorage.initDataBase(context)
-        dbStorage.clearUserDB()
+    override fun clearDB(){
+        userStorage.clearUserTable()
+        userStorage.clearAccessTokenTable()
+        userStorage.clearRefreshTokenTable()
+        cityStorage.clearCityTable()
     }
     }

@@ -6,41 +6,42 @@ import ru.bscmsk.renttable.dataDataBase.implementations.DBCityRepositoryImpl
 import ru.bscmsk.renttable.dataDataBase.implementations.DBTablesRepositoryImpl
 import ru.bscmsk.renttable.dataDataBase.implementations.DBTokensRepositoryImpl
 import ru.bscmsk.renttable.dataDataBase.implementations.DBUserRepositoryImpl
-import ru.bscmsk.renttable.dataDataBase.storage.DBStorageImpl
+import ru.bscmsk.renttable.dataDataBase.storage.CityStorage
+import ru.bscmsk.renttable.dataDataBase.storage.CityStorageImpl
+import ru.bscmsk.renttable.dataDataBase.storage.UserStorage
+import ru.bscmsk.renttable.dataDataBase.storage.UserStorageImpl
+import ru.bscmsk.renttable.domain.models.CityDataModel
 import ru.bscmsk.renttable.domain.models.TokensDataModel
 import ru.bscmsk.renttable.domain.models.UserDataModel
 import ru.bscmsk.renttable.domain.usecase.*
 
 class MainActivity : AppCompatActivity() {
-    private val storage = DBStorageImpl()
-    private val firstDBUseCase = CheckNullCityDBUseCase(DBCityRepositoryImpl(storage))
-    private val secondDBUseCase = SaveCityDBUseCase(DBCityRepositoryImpl(storage))
-    private val thirdDBUseCase = GetAccessTokenDBUseCase(DBTokensRepositoryImpl(storage))
-    private val fourtDBUseCase = GetRefreshTokenDBUseCase(DBTokensRepositoryImpl(storage))
-    private val fifthDBUseCase = SaveTokensDBUseCase(DBTokensRepositoryImpl(storage))
-    private val sixthDBUseCase = RefreshTokensDBUseCase(DBTokensRepositoryImpl(storage))
-    private val seventhDBUseCase = ClearDBUseCase(DBTablesRepositoryImpl(storage))
-    private val eighthDBUseCase = SaveUserDBUseCase(DBUserRepositoryImpl(storage))
+    private val userStorage : UserStorage by lazy{UserStorageImpl.getRepository(this)}
+    private val cityStorage : CityStorage by lazy{ CityStorageImpl.getRepository(this)}
+    private val firstDBUseCase: CheckNullCityDBUseCase by lazy{ CheckNullCityDBUseCase(DBCityRepositoryImpl(cityStorage))}
+    private val secondDBUseCase :SaveCityDBUseCase by lazy{SaveCityDBUseCase(DBCityRepositoryImpl(cityStorage))}
+    private val thirdDBUseCase :GetAccessTokenDBUseCase by lazy{GetAccessTokenDBUseCase(DBTokensRepositoryImpl(userStorage))}
+    private val fourtDBUseCase :GetRefreshTokenDBUseCase by lazy{GetRefreshTokenDBUseCase(DBTokensRepositoryImpl(userStorage))}
+    private val fifthDBUseCase :SaveTokensDBUseCase by lazy{SaveTokensDBUseCase(DBTokensRepositoryImpl(userStorage))}
+    private val sixthDBUseCase :RefreshTokensDBUseCase by lazy{RefreshTokensDBUseCase(DBTokensRepositoryImpl(userStorage))}
+    private val seventhDBUseCase :ClearDBUseCase by lazy{ClearDBUseCase(DBTablesRepositoryImpl(userStorage,cityStorage))}
+    private val eighthDBUseCase :SaveUserDBUseCase by lazy{SaveUserDBUseCase(DBUserRepositoryImpl(userStorage))}
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        println(userStorage)
+        println(UserStorageImpl.getRepository(this))
         val thr = Thread(kotlinx.coroutines.Runnable {
-            seventhDBUseCase.execute(this)
-            println(111111110)
+            seventhDBUseCase.execute()
             eighthDBUseCase.execute(this, userDataModel = UserDataModel("w","3"))
-            println(11111111)
             println(firstDBUseCase.execute(this))
-            println(22222222)
             fifthDBUseCase.execute(this, tokensDataModel = TokensDataModel("1","2"))
             println(thirdDBUseCase.execute(this).token)
-            println(44444444)
             println(fourtDBUseCase.execute(this).token)
-            println(33333333)
             sixthDBUseCase.execute(this, tokensDataModel = TokensDataModel("3","4"))
             println(thirdDBUseCase.execute(this).token)
-            println(44444444)
             println(fourtDBUseCase.execute(this).token)
-            //secondDBUseCase.execute(this, CityDataModel("Белградище"))
+            secondDBUseCase.execute(this, CityDataModel("Белградище"))
             println(firstDBUseCase.execute(this))
         })
         thr.start()

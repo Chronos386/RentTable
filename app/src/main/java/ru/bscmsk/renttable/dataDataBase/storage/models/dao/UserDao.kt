@@ -1,6 +1,7 @@
-package ru.bscmsk.renttable.dataDataBase.storage.models.User
+package ru.bscmsk.renttable.dataDataBase.storage.models.dao
 
 import androidx.room.*
+import ru.bscmsk.renttable.dataDataBase.storage.models.entity.UserModel
 
 @Dao
 interface UserDao {

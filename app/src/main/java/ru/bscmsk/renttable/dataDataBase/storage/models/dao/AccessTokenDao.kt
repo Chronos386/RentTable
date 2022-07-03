@@ -1,6 +1,7 @@
-package ru.bscmsk.renttable.dataDataBase.storage.models.AccessToken
+package ru.bscmsk.renttable.dataDataBase.storage.models.dao
 
 import androidx.room.*
+import ru.bscmsk.renttable.dataDataBase.storage.models.entity.AccessTokenModel
 
 
 @Dao

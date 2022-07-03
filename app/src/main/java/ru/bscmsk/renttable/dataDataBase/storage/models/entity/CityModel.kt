@@ -1,4 +1,4 @@
-package ru.bscmsk.renttable.dataDataBase.storage.models.City
+package ru.bscmsk.renttable.dataDataBase.storage.models.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

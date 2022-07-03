@@ -1,6 +1,7 @@
-package ru.bscmsk.renttable.dataDataBase.storage.models.City
+package ru.bscmsk.renttable.dataDataBase.storage.models.dao
 
 import androidx.room.*
+import ru.bscmsk.renttable.dataDataBase.storage.models.entity.CityModel
 
 @Dao
 interface CityDao {
