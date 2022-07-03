@@ -13,11 +13,12 @@ class DBCityRepositoryImpl (private val cityStorage: CityStorage):
     }
 
     override fun check(context: Context):Boolean{
-        if (cityStorage.getCity() == null)
-        {
-            return true
+        cityStorage.getCity().let{result ->
+            return when(result){
+                null -> true
+                else -> false
+            }
         }
-        return false
     }
 
 }
