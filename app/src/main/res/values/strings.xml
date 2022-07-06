@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">RentTable</string>
+    <string name="Error_field">Войдите, пожалуйста, в аккаунт</string>
+    <string name="Hello_login_fragment">Добро пожаловать!</string>
+    <string name="Enter">Ввод</string>
+    <string name="rent">RentTable</string>
+    <string name="city">Москва</string>
+    <string name="choose_space">Выберите место:</string>
+    <string name="reserved_days">Зарезервированные дни:</string>
+    <string name = "button"> Button </string>
+    <string name = "day"> 1 </string>
+    <string name = "month"> месяц </string>
+    <string name = "get_space"> Подобрать места </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
