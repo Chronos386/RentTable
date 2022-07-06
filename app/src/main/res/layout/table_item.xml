@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="53dp"
-    android:layout_height="59dp"
-    android:background="@color/white" >
+    android:id = "@+id/table"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:background="@drawable/table_style_default">
 
     <TextView
+        android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="@string/day"
+        android:text="@string/place"
         android:textColor="@color/black"
-        android:textSize="@dimen/buttonsize" />
+        android:textSize="@dimen/buttonTextsize" />
 
 </RelativeLayout>

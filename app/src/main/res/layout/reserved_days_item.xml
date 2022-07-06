@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id = "@+id/item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/table_style_default">
+
+
+    <TextView
+        android:id="@+id/day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="5dp"
+        android:text="ДН"
+
+        android:textSize="@dimen/textsize"
+        android:textColor="@color/black"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="16"
+        android:textSize="@dimen/textsize"
+        android:textColor="@color/melon"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/day"
+
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="0dp"
+
+
+        />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Свободно"
+        android:textSize="@dimen/textsize"
+        android:textColor="@color/black"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="14dp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

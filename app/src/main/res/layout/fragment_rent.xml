@@ -16,7 +16,7 @@
         android:layout_marginStart="@dimen/left_margin"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="150dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginBottom="40dp"
 
         android:font="@font/nunito_extrabold"
         android:text="@string/rent"
@@ -65,9 +65,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
 
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="40dp"
         android:layout_marginStart="@dimen/left_margin"
-        android:layout_marginBottom="0dp"
+        android:layout_marginBottom="10dp"
          />
 
 
@@ -75,15 +75,15 @@
         android:id="@+id/map"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:src = "@drawable/fon"
+
 
 
         android:layout_marginStart="@dimen/left_margin"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="75dp"
         android:layout_marginEnd="22dp"
-        android:layout_marginBottom="0dp"
+        android:layout_marginBottom="5dp"
 
-        android:background="@drawable/dialog_bg"
+        android:background="@drawable/table_style_default"
         app:layout_constraintBottom_toTopOf="@+id/Places_fragmentContainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -98,7 +98,7 @@
         android:id="@+id/Places_fragmentContainer"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="280dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -8,9 +8,14 @@
     <string name="choose_space">Выберите место:</string>
     <string name="reserved_days">Зарезервированные дни:</string>
     <string name = "button"> Button </string>
-    <string name = "day"> 1 </string>
+    <string name = "place"> 1 </string>
     <string name = "month"> месяц </string>
     <string name = "get_space"> Подобрать места </string>
+    <string name = "suggested_places">Предлагаемые места:  </string>
+    <string name = "save">Сохранить  </string>
+    <string name = "startDay">Выберите дату начала:  </string>
+    <string name = "endDay">Выберите дату окончания:  </string>
+    <string name = "pick"> Подобрать</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

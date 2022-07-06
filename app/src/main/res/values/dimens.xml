@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-    <dimen name="buttonsize">30sp</dimen>
+    <dimen name="buttonTextsize">20sp</dimen>
     <dimen name="radiussize">17dp</dimen>
     <dimen name ="left_margin">23dp</dimen>
     <dimen name="textsize">20sp</dimen>

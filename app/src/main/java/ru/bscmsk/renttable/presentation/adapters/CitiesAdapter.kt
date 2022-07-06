@@ -24,7 +24,6 @@ class CitiesAdapter(private val context: Context, private val list: List<CityDat
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        Log.e("AAA","hui4")
         val data = list.get(position)
         val but = holder.itemView.findViewById<Button>(R.id.button)
         but.text= data.name

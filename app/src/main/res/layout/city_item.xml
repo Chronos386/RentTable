@@ -15,6 +15,6 @@
         android:textColor="@color/black"
         android:layout_centerInParent="true"
 
-        android:textSize="@dimen/buttonsize">
+        android:textSize="@dimen/buttonTextsize">
     </TextView>
 </RelativeLayout>

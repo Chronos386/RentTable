@@ -19,12 +19,11 @@ class RentFragment: Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentRentBinding.inflate(inflater, container, false)
-        Log.e("AAA","AB3")
 
         if (savedInstanceState == null) {
             childFragmentManager
                 .beginTransaction()
-                .add(binding.PlacesFragmentContainer.id, ChoiseofPlacesFragment())
+                .add(binding.PlacesFragmentContainer.id, ChoiseDayPeriodFragment())
                 .commit()
         }
         return binding.root

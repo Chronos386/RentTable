@@ -18,4 +18,8 @@
         <item name="colorPrimary">@color/melon</item>
     </style>
 
+    <style name="WhiteColor" parent="ThemeOverlay.AppCompat">
+        <item name="colorPrimary">@color/white</item>
+    </style>
+
 </resources>

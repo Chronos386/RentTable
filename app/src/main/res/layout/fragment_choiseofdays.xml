@@ -12,49 +12,14 @@
         android:layout_height="0dp"
 
         android:layout_marginStart="@dimen/left_margin"
-        android:layout_marginBottom="95dp"
+        android:layout_marginBottom="30dp"
         android:font="@font/nunito_extrabold"
-        android:text="@string/choose_space"
+        android:text="@string/suggested_places"
 
         android:textColor="@color/black"
         android:textSize="@dimen/textsize"
 
-        app:layout_constraintBottom_toTopOf="@+id/recyclerViewDay"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewPlace"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="@dimen/left_margin"
-
-        android:layout_marginTop="30dp"
-        android:orientation="horizontal"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </androidx.recyclerview.widget.RecyclerView>
-
-    <TextView
-        android:id="@+id/text1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-
-        android:layout_marginStart="@dimen/left_margin"
-        android:layout_marginTop="75dp"
-        android:layout_marginBottom="28dp"
-
-        android:font="@font/nunito_extrabold"
-        android:text="@string/reserved_days"
-
-        android:textColor="@color/black"
-        android:textSize="@dimen/textsize"
-
-        app:layout_constraintBottom_toTopOf="@+id/recyclerViewDay"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -65,8 +30,8 @@
         android:layout_height="0dp"
 
         android:layout_marginStart="@dimen/left_margin"
-        android:layout_marginTop="108dp"
-        android:layout_marginBottom="0dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="5dp"
 
         android:font="@font/nunito_extrabold"
         android:text="Ноябрь"
@@ -74,29 +39,35 @@
         android:textColor="@color/melon"
         android:textSize="16sp"
 
-        app:layout_constraintBottom_toTopOf="@+id/recyclerViewDay"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewDay"
+        android:id="@+id/recyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
 
         android:layout_marginStart="@dimen/left_margin"
-        android:layout_marginTop="130dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="55dp"
+
+
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
         android:orientation="vertical"
 
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+
+        android:layout_marginBottom="10dp"
+        >
 
     </androidx.recyclerview.widget.RecyclerView>
-
-    <!--android:background="@drawable/buttom_corner"-->
 
     <Button
         android:id="@+id/button"
@@ -105,10 +76,7 @@
         android:theme = "@style/Button.Melon"
         android:background="@drawable/buttom_corner"
 
-
-        android:text="@string/get_space"
-
-
+        android:text="@string/save"
 
         android:layout_marginTop="270dp"
         android:layout_marginStart="@dimen/left_margin"
@@ -119,5 +87,6 @@
         app:layout_constraintEnd_toEndOf="parent"
 
         />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
