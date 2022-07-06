@@ -2,7 +2,6 @@ package ru.bscmsk.renttable.presentation.fragments.CityList
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,11 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.bscmsk.renttable.domain.models.CityDataModel
-import ru.bscmsk.renttable.domain.models.CityListDataModel
 import ru.bscmsk.renttable.databinding.FragmentCitylistBinding
-import javax.inject.Inject
 import androidx.lifecycle.Observer
-import kotlinx.android.synthetic.main.fragment_citylist.*
+import ru.bscmsk.renttable.presentation.adapters.CitiesAdapter
 
 
 class CityListFragment: Fragment() {
@@ -40,7 +37,7 @@ class CityListFragment: Fragment() {
     private fun createList() {
         val linearLayoutManager = LinearLayoutManager(requireContext())
         linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
-        recyclerView.layoutManager = linearLayoutManager
+        binding.recyclerView.layoutManager = linearLayoutManager
         val adapter = CitiesAdapter(context = requireContext(),list = citylist,object : CityInterface {
             override fun onClicked(city: CityDataModel)
             {
@@ -48,6 +45,6 @@ class CityListFragment: Fragment() {
             }
 
         })
-        recyclerView.adapter = adapter
+        binding.recyclerView.adapter = adapter
     }
 }

@@ -3,8 +3,6 @@ package ru.bscmsk.renttable.presentation
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.view.*
 import ru.bscmsk.renttable.R
 import ru.bscmsk.renttable.databinding.ActivityMainBinding
 import ru.bscmsk.renttable.presentation.fragments.CityList.CityListFragment
