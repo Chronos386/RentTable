@@ -1,7 +1,6 @@
 package ru.bscmsk.renttable.domain.interactors
 
 import ru.bscmsk.renttable.domain.models.CityDataModel
-import ru.bscmsk.renttable.domain.useCase.GetCityListUseCase
 import ru.bscmsk.renttable.domain.useCase.*
 
 class CityInteractor (
