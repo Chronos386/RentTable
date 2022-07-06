@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFF2EF">
+    <!--android:weightSum="100"-->
+
+ <RelativeLayout
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:orientation="vertical">
+
+  <!-- currently empty -->
+
+ </RelativeLayout>
+
+ <RelativeLayout
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:layout_weight=".1"
+     android:orientation="vertical">
+
+ </RelativeLayout>
+
+
+
+
+
+ <!--
+/* Frame 8 */
+
+position: absolute;
+width: 433px;
+height: 528px;
+left: 0px;
+top: 430px;
+
+background: #FFFFFF;
+border-radius: 16px;
+
+
+/* Title 0 */
+
+position: absolute;
+width: 293px;
+height: 37px;
+left: 76px;
+top: 55px;
+
+
+
+/* Инвентаризация */
+
+position: absolute;
+left: 0%;
+right: -92.41%;
+top: 0%;
+bottom: -61.54%;
+
+font-family: 'Nunito';
+font-style: normal;
+font-weight: 700;
+font-size: 28px;
+line-height: 38px;
+
+color: #000000;
+
+
+
+/* 1. Filled/C. No assistive text/a. Inactive */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 10px;
+
+position: absolute;
+width: 384px;
+height: 58px;
+left: 30px;
+top: 180px;
+
+
+
+/* Input */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 16px;
+gap: 14px;
+
+display: none;
+width: 328px;
+height: 56px;
+
+/* Surface overlay */
+background: rgba(33, 33, 33, 0.08);
+border-radius: 4px 4px 0px 0px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Input */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 16px;
+gap: 14px;
+
+position: absolute;
+width: 402px;
+height: 56px;
+left: 15px;
+top: 254px;
+
+background: rgba(191, 191, 191, 0.2);
+border-radius: 4px 4px 0px 0px;
+
+
+/* lock-open */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: flex-start;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 16.67%;
+right: 16.67%;
+top: 4.17%;
+bottom: 8.33%;
+
+/* Icon color */
+background: rgba(0, 0, 0, 0.54);
+
+
+/* Vector */
+
+position: absolute;
+visibility: hidden;
+left: 16.67%;
+right: 16.67%;
+top: 4.17%;
+bottom: 8.33%;
+
+/* text / secondary | 54p */
+background: rgba(0, 0, 0, 0.54);
+
+
+/* ✏️ Input text */
+
+width: 294px;
+height: 24px;
+
+/* Subtitle 1 */
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 24px;
+/* identical to box height, or 150% */
+letter-spacing: 0.15px;
+
+/* 00. On Surface / High Emphasis */
+color: rgba(0, 0, 0, 0.87);
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 1;
+
+
+/* 📍Icon */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/*  ↳Color */
+
+position: absolute;
+left: 4.17%;
+right: 4.17%;
+top: 20.83%;
+bottom: 16.67%;
+
+/* 00. On Surface / Medium Emphasis */
+background: rgba(0, 0, 0, 0.6);
+
+
+/* Path */
+
+position: absolute;
+left: 4.17%;
+right: 4.17%;
+top: 20.83%;
+bottom: 16.67%;
+
+
+
+/* Path */
+
+position: absolute;
+left: 29.17%;
+right: 29.17%;
+top: 31.25%;
+bottom: 27.08%;
+
+
+
+/* Path */
+
+position: absolute;
+left: 37.5%;
+right: 37.5%;
+top: 39.58%;
+bottom: 35.42%;
+
+
+
+/* 1. Filled/C. No assistive text/c. Focused */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+
+position: absolute;
+width: 402px;
+height: 55px;
+left: 15px;
+top: calc(50% - 55px/2 - 53.5px);
+
+background: rgba(191, 191, 191, 0.2);
+border-radius: 4px 4px 0px 0px;
+
+
+/* Input */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 8px 16px;
+gap: 14px;
+
+width: 402px;
+height: 54px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* person-outline */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 16.67%;
+right: 16.67%;
+top: 16.67%;
+bottom: 16.67%;
+
+/* Icon color */
+background: rgba(0, 0, 0, 0.54);
+
+
+/* Vector */
+
+position: absolute;
+visibility: hidden;
+left: 16.67%;
+right: 16.67%;
+top: 16.67%;
+bottom: 16.67%;
+
+/* text / secondary | 54p */
+background: rgba(0, 0, 0, 0.54);
+
+
+/* Autolayout */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+
+width: 332px;
+height: 38px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 1;
+
+
+/* ✏️ Label */
+
+width: 332px;
+height: 14px;
+
+/* Caption */
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 16px;
+/* or 133% */
+letter-spacing: 0.4px;
+
+color: #FF7558;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Input Text */
+
+width: 332px;
+height: 24px;
+
+/* Subtitle 1 */
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 24px;
+/* identical to box height, or 150% */
+letter-spacing: 0.15px;
+
+/* 00. On Surface / High Emphasis */
+color: rgba(0, 0, 0, 0.87);
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* 📍Icon */
+
+display: none;
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* Indicator */
+
+width: 402px;
+height: 1px;
+
+background: #FF7558;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Version 0.0.1-879d8f2d */
+
+position: absolute;
+width: 128px;
+height: 24px;
+left: 152px;
+top: 473px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 24px;
+/* identical to box height, or 200% */
+letter-spacing: 0.15px;
+
+color: #E5E5E5;
+
+
+
+/* Войдите, пожалуйста, в аккаунт */
+
+position: absolute;
+width: 214px;
+height: 24px;
+left: 109px;
+top: 108px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 24px;
+/* identical to box height, or 171% */
+letter-spacing: 0.15px;
+
+color: #939393;
+
+
+
+/* Logo Component */
+
+position: absolute;
+width: 81px;
+height: 27px;
+left: 176px;
+top: 430px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 12.21%;
+right: 61.42%;
+top: 0.4%;
+bottom: 0.41%;
+
+background: #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 42.44%;
+right: 32.53%;
+top: 0.76%;
+bottom: 0.05%;
+
+background: #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 70.99%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+background: #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 93.58%;
+top: 80.08%;
+bottom: 0.41%;
+
+background: #FF7558;
+
+
+/* Primary Button */
+
+position: absolute;
+width: 402px;
+height: 52px;
+left: 15px;
+top: 326px;
+
+
+
+/* Rectangle 8 */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+background: #FF7558;
+border-radius: 26px;
+
+
+/* ВОЙТИ */
+
+position: absolute;
+left: 43.53%;
+right: 43.53%;
+top: 33.33%;
+bottom: 33.33%;
+
+/* Button */
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 16px;
+/* or 114% */
+letter-spacing: 1.25px;
+text-transform: uppercase;
+
+color: #FFFFFF;
+
+
+
+ -->
+
+
+
+
+<!-- <EditText
+        android:id="@+id/login_editText"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="420dp"
+        android:ems="10"
+        android:hint="Логин"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/password_editText"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Пароль"
+        android:inputType="textPassword"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_editText" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="132dp"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/login_editText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="@string/Hello_login_fragment" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="70dp"
+        android:text="@string/Error_field"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/button_enter_login"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="Войти"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_editText" />
+-->
+</LinearLayout>
