@@ -39,15 +39,16 @@
         />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/place"
+
+        android:textSize="@dimen/textsize"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
 
         app:layout_constraintTop_toTopOf="parent"
-        android:theme = "@style/Button.Melon"
+        android:theme = "@style/Buttom.Melon"
         android:background="@drawable/table_style_push"
 
         android:layout_marginTop="5dp"

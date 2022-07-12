@@ -85,9 +85,11 @@
         android:id="@+id/button"
         android:layout_width="0dp"
         android:layout_height="52dp"
-        android:theme = "@style/Button.Melon"
+        android:theme = "@style/Buttom.Melon"
         android:background="@drawable/buttom_corner"
+        android:font="@font/roboto"
 
+        android:textSize="@dimen/buttonTextsize"
         android:text="@string/save"
 
         android:layout_marginTop="150dp"

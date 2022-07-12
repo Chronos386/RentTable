@@ -31,8 +31,17 @@
         <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/layout/fragment_login.xml" value="0.25" />
         <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/layout/fragment_main.xml" value="0.14402173913043478" />
         <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/layout/fragment_rent.xml" value="0.33" />
+        <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/layout/login_dialog_fragment.xml" value="0.460352422907489" />
+        <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/layout/proposed_locate_item.xml" value="0.5" />
         <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/layout/reserved_days_item.xml" value="0.67" />
+        <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/layout/reserved_locate_item.xml" value="0.25052083333333336" />
+        <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/layout/reserved_seats_item.xml" value="0.67" />
+        <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/layout/spinner_city_item.xml" value="0.20555555555555555" />
+        <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/layout/spinner_month_item.xml" value="0.25052083333333336" />
+        <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/layout/spinner_placechose_dropdown_item.xml" value="0.18489583333333334" />
+        <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/layout/spinner_placechose_item.xml" value="1.5" />
         <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/layout/suggested_place_item.xml" value="0.5" />
+        <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/layout/table2_item.xml" value="0.16259057971014493" />
         <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/layout/table_item.xml" value="0.5" />
         <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="..\:/Institute/MOBILE/Test/Practica/renttable/app/src/main/res/layout/activity_main.xml" value="0.18489583333333334" />

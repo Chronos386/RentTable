@@ -11,9 +11,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.bscmsk.renttable.R
 
-class TablesAdapter(private val context: Context, private val list: List<String>):
-    RecyclerView.Adapter<TablesAdapter.MyViewHolder>() {
-    private var selectedItemPosition: Int = -1
+class Tables2Adapter(private val context: Context, private val list: List<String>,private var hold:DaysRentFewTableAdapter.MyViewHolder):
+    RecyclerView.Adapter<Tables2Adapter.MyViewHolder>() {
+
+    private var selectedItemPosition: Int = hold.but.text.toString().toInt()-1
+
+
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var table = view.findViewById<RelativeLayout>(R.id.table) as RelativeLayout
         var text = view.findViewById<TextView>(R.id.text) as TextView
@@ -22,11 +25,11 @@ class TablesAdapter(private val context: Context, private val list: List<String>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(context)
-            .inflate(R.layout.table_item, parent, false)
+            .inflate(R.layout.table2_item, parent, false)
         return MyViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, @SuppressLint("RecyclerView") position: Int) {
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val data = list.get(position)
 
         holder.text.text = data
@@ -39,12 +42,12 @@ class TablesAdapter(private val context: Context, private val list: List<String>
         else
         {
             holder.table.setBackgroundResource(R.drawable.table_style_default)
-            holder.text.setTextColor(Color.BLACK)
+            holder.text.setTextColor(Color.parseColor("#FF7558"))
         }
 
         holder.table.setOnClickListener {
-            selectedItemPosition = position
-            notifyDataSetChanged()
+            if (selectedItemPosition != position)
+                hold.but.text = data
         }
     }
 

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/polished_pink">
+    android:background="@color/show_white"
+    tools:context=".presentation.fragments.Rent.ChoiseofPlacesFragment">
 
     <TextView
         android:id="@+id/text"
@@ -59,25 +60,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/text2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+    <Spinner
+        android:id="@+id/spinner_month"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:background="@null"
+
 
         android:layout_marginStart="@dimen/left_margin"
         android:layout_marginTop="108dp"
-        android:layout_marginBottom="0dp"
+        android:layout_marginBottom="5dp"
 
-        android:font="@font/nunito_extrabold"
-        android:text="Ноябрь"
-
-        android:textColor="@color/melon"
-        android:textSize="16sp"
 
         app:layout_constraintBottom_toTopOf="@+id/recyclerViewDay"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+    </Spinner>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewDay"
@@ -102,13 +102,12 @@
         android:id="@+id/button"
         android:layout_width="0dp"
         android:layout_height="52dp"
-        android:theme = "@style/Button.Melon"
+        android:theme = "@style/Buttom.Melon"
         android:background="@drawable/buttom_corner"
-
-
         android:text="@string/get_space"
 
-
+        android:font="@font/roboto"
+        android:textSize="@dimen/buttonTextsize"
 
         android:layout_marginTop="270dp"
         android:layout_marginStart="@dimen/left_margin"

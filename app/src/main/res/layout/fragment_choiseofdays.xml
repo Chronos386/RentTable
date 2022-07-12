@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/polished_pink">
+    android:background="@color/show_white">
 
     <TextView
         android:id="@+id/text"
@@ -19,12 +19,12 @@
         android:textColor="@color/black"
         android:textSize="@dimen/textsize"
 
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <!--<TextView
         android:id="@+id/text2"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -37,13 +37,31 @@
         android:text="Ноябрь"
 
         android:textColor="@color/melon"
-        android:textSize="16sp"
+        android:textSize="@dimen/monthsize"
 
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />-->
 
+
+    <Spinner
+        android:id="@+id/spinner_month"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+
+        android:layout_marginStart="@dimen/left_margin"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="5dp"
+
+
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </Spinner>
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -53,18 +71,61 @@
 
         android:layout_marginStart="@dimen/left_margin"
         android:layout_marginTop="55dp"
+        android:layout_marginEnd="@dimen/left_margin"
 
 
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:spanCount="2">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewBonus1"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:background="@drawable/reserved_days_push"
+        android:visibility="invisible"
+
+        android:layout_marginStart="103dp"
+        android:layout_marginTop="55dp"
+
+
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical"
+
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewBonus2"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:background="@drawable/reserved_days_push"
+        android:visibility="invisible"
+
+        android:layout_marginEnd="@dimen/left_margin"
+        android:layout_marginTop="55dp"
+
+
+        android:layout_marginBottom="10dp"
         android:orientation="vertical"
 
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-
-        android:layout_marginBottom="10dp"
         >
 
     </androidx.recyclerview.widget.RecyclerView>
@@ -73,9 +134,11 @@
         android:id="@+id/button"
         android:layout_width="0dp"
         android:layout_height="52dp"
-        android:theme = "@style/Button.Melon"
+        android:theme = "@style/Buttom.Melon"
         android:background="@drawable/buttom_corner"
+        android:font="@font/roboto"
 
+        android:textSize="@dimen/buttonTextsize"
         android:text="@string/save"
 
         android:layout_marginTop="270dp"

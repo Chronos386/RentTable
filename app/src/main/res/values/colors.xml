@@ -11,4 +11,6 @@
     <color name="polished_pink">#FFF2EF</color>
     <color name="melon">#FF7558</color>
     <color name="stong_pink">#FFD3CA</color>
+    <color name = "red"> #FF0000 </color>
+    <color name = "show_white">#FFF9F7 </color>
 </resources>

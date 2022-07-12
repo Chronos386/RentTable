@@ -14,12 +14,16 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="Button.Melon" parent="ThemeOverlay.AppCompat">
+    <style name="Buttom.Melon" parent="ThemeOverlay.AppCompat">
         <item name="colorPrimary">@color/melon</item>
     </style>
 
-    <style name="WhiteColor" parent="ThemeOverlay.AppCompat">
-        <item name="colorPrimary">@color/white</item>
+    <style name="Buttom.Red" parent="ThemeOverlay.AppCompat">
+        <item name="colorPrimary">@color/red</item>
+    </style>
+
+    <style parent="@android:style/Widget.Spinner" name="SpinnerwithNoArrow">
+        <item name="android:background">@android:drawable/edit_text</item>
     </style>
 
 </resources>

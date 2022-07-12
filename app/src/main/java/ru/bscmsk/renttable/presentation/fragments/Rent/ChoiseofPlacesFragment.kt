@@ -5,8 +5,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import ru.bscmsk.renttable.R
+import ru.bscmsk.renttable.databinding.FragmentChoicedaysperiodBinding
+import ru.bscmsk.renttable.databinding.FragmentChoiseofdaysBinding
 import ru.bscmsk.renttable.databinding.FragmentChoiseofplacesBinding
 import ru.bscmsk.renttable.presentation.adapters.*
 import java.time.LocalDate
@@ -52,12 +57,33 @@ class ChoiseofPlacesFragment: Fragment() {
         list2.add(date)
 
 
+        val list3:List<String>  = listOf("Июль","Август")
+        val monthlistAdapter: ArrayAdapter<String> = ArrayAdapter<String> (requireContext(),
+            R.layout.spinner_month_item,list3)
+        monthlistAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spinnerMonth.adapter = monthlistAdapter
+
+
+
         linearLayoutManager = LinearLayoutManager(requireContext())
         linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.recyclerViewDay.layoutManager = linearLayoutManager
         binding.recyclerViewDay.addItemDecoration(VerticalSpaceItemDecoration(12))
         val adapter2 = DayRentOneTableAdapter(context = requireContext(),list = list2)
         binding.recyclerViewDay.adapter = adapter2
+
+
+        binding.button.setOnClickListener{
+            val dialog = BottomSheetDialog(requireContext())
+            val view= FragmentChoicedaysperiodBinding.inflate(inflater, container, false)
+            view.button.setOnClickListener {
+                dialog.dismiss()
+            }
+            //dialog.setCancelable(false)
+
+            dialog.setContentView(view.root)
+            dialog.show()
+        }
 
         return binding.root
 
