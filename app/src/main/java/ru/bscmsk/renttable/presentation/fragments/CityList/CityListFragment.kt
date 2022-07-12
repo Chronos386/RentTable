@@ -24,7 +24,7 @@ class CityListFragment: Fragment() {
         binding = FragmentCitylistBinding.inflate(inflater, container, false)
 
         vm = ViewModelProvider(this,vmFactory).get(CityListViewModel::class.java)
-        vm.getList()//Видимо я тут делаю что-то не так, так как это вызывает проблемы
+        vm.getList()
 
         vm.resultLive.observe(viewLifecycleOwner, Observer {
             citylist = it

@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 
 
 class BaseFragment: Fragment() {
-    lateinit var vmFactory: BaseViewModelFactory
+    val vmFactory: BaseViewModelFactory = BaseViewModelFactory()
     private lateinit var vm: BaseViewModel
 
 
