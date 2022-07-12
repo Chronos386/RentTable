@@ -6,10 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.widget.doOnTextChanged
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ru.bscmsk.renttable.R
 import ru.bscmsk.renttable.presentation.fragments.Rent.ModelRentItem
+import java.time.LocalDate
 
 
 class DaysRentFewTableAdapter (

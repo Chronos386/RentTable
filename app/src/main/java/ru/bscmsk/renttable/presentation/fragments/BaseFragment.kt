@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import ru.bscmsk.renttable.presentation.viewModels.BaseViewModel
+import ru.bscmsk.renttable.presentation.viewModels.viewFactories.BaseViewModelFactory
 
 
 class BaseFragment: Fragment() {

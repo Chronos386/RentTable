@@ -1,15 +1,10 @@
 package ru.bscmsk.renttable.domain.repository
 
-import ru.bscmsk.renttable.domain.models.AccessTokenDataModel
-import ru.bscmsk.renttable.domain.models.RefreshTokenDataModel
-import ru.bscmsk.renttable.domain.models.TokensDataModel
-import ru.bscmsk.renttable.domain.models.UserDataModel
+import ru.bscmsk.renttable.app.sealed.UserAuthorized
+import ru.bscmsk.renttable.domain.models.UserDomain
 
 interface UserRepository {
-    suspend fun sendUserToServ(user: UserDataModel): TokensDataModel?
-    suspend fun refreshTokens(token: RefreshTokenDataModel): TokensDataModel?
-    suspend fun getAccessToken(): AccessTokenDataModel
-    suspend fun getRefreshToken(): RefreshTokenDataModel
-    suspend fun refreshTokens(tokens: TokensDataModel)
-    suspend fun saveTokens(tokens: TokensDataModel)
+    suspend fun sendUserToServ(user: UserDomain): UserAuthorized
+    suspend fun getUser(): UserDomain
+    suspend fun exitAccount()
 }

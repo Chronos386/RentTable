@@ -12,9 +12,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import ru.bscmsk.renttable.R
 import ru.bscmsk.renttable.databinding.FragmentRentBinding
-import ru.bscmsk.renttable.domain.models.CityDataModel
-import ru.bscmsk.renttable.presentation.fragments.BaseViewModel
-import ru.bscmsk.renttable.presentation.fragments.BaseViewModelFactory
 
 class RentFragment: Fragment() {
     private lateinit var binding: FragmentRentBinding
@@ -52,12 +49,8 @@ class RentFragment: Fragment() {
 
 
     }
-    fun setSpinner(citylist: List<CityDataModel>){
-        val list:ArrayList<String> = ArrayList<String>()
-        citylist.forEach{
-            it -> list.add(it.name)
-        }
-        val citilistAdapter: ArrayAdapter<String> = ArrayAdapter<String> (requireContext(),R.layout.spinner_city_item,list)
+    fun setSpinner(citylist: List<String>){
+        val citilistAdapter: ArrayAdapter<String> = ArrayAdapter<String> (requireContext(),R.layout.spinner_city_item,citylist)
         citilistAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerCity.adapter = citilistAdapter
         binding.spinnerCity.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{

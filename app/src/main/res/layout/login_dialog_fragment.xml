@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/show_white">
+
+    <TextView
+        android:id="@+id/UserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text = ""
+
+
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="@dimen/left_margin"
+        android:layout_marginEnd="@dimen/left_margin"
+        android:font="@font/nunito_extrabold"
+
+
+        android:textColor="@color/black"
+        android:textSize="@dimen/textsize"
+
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+
+
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="@dimen/left_margin"
+        android:layout_marginEnd="@dimen/left_margin"
+        android:layout_marginTop="10dp"
+
+        android:font="@font/nunito_extrabold"
+
+        android:text="Ваш список забронированных мест:"
+        android:textColor="@color/black"
+
+        android:textSize="@dimen/textsize"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/UserName" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewPlace"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/left_margin"
+        android:layout_marginEnd="@dimen/left_margin"
+
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/list"
+        >
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/buttonexit"
+        android:layout_width="0dp"
+        android:layout_height="52dp"
+
+        android:layout_marginLeft="@dimen/left_margin"
+        android:layout_marginRight="@dimen/left_margin"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+
+        android:background="@drawable/buttom_corner"
+        android:font="@font/roboto"
+
+
+        android:text="Выход из аккаунта"
+        android:textSize="@dimen/buttonTextsize"
+        android:theme="@style/Buttom.Red"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewPlace" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

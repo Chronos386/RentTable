@@ -1,21 +1,22 @@
 package ru.bscmsk.renttable.presentation.adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import ru.bscmsk.renttable.domain.models.CityDataModel
 import ru.bscmsk.renttable.R
-import ru.bscmsk.renttable.presentation.fragments.CityList.CityInterface
+import ru.bscmsk.renttable.presentation.interfaces.CityInterface
+import ru.bscmsk.renttable.presentation.models.CityPresentation
 
-class CitiesAdapter(private val context: Context, private val list: List<CityDataModel>,
-                    val MyonClick: CityInterface):
+class CitiesAdapter(
+    private val context: Context,
+    private val list: List<CityPresentation>,
+    private val myOnClick: CityInterface
+):
     RecyclerView.Adapter<CitiesAdapter.MyViewHolder>() {
-    inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    }
+    inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(context)
@@ -24,11 +25,11 @@ class CitiesAdapter(private val context: Context, private val list: List<CityDat
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val data = list.get(position)
-        val but = holder.itemView.findViewById<Button>(R.id.button)
+        val data = list[position]
+        val but = holder.itemView.findViewById<TextView>(R.id.button)
         but.text= data.name
         but.setOnClickListener {
-            MyonClick.onClicked(data)
+            myOnClick.onClicked(data)
         }
     }
 

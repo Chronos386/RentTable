@@ -33,10 +33,10 @@
         android:id="@+id/userImage"
         android:layout_width="25dp"
         android:layout_height="20dp"
+        android:src = "@drawable/img"
 
         android:layout_marginTop="12dp"
         android:layout_marginEnd="25dp"
-        android:src="@drawable/img"
 
 
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,30 +62,6 @@
         android:background="@null">
 
     </Spinner>
-
-    <!--<TextView
-        android:id="@+id/text1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-
-        android:font="@font/nunito_extrabold"
-        android:text="@string/city"
-
-        android:textColor="@color/melon"
-        android:textSize="@dimen/textsize"
-
-
-        app:layout_constraintBottom_toTopOf="@+id/map"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-
-        android:layout_marginTop="40dp"
-        android:layout_marginStart="@dimen/left_margin"
-        android:layout_marginBottom="10dp"
-         />-->
-
-
 
 
     <ImageView
@@ -122,113 +98,5 @@
         app:layout_constraintTop_toTopOf="parent"
 
         />
-
-    <!--
-
-
-
-    -->
-
-    <!--<TextView
-        android:id="@+id/text2"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="31dp"
-        android:font="@font/nunito_extrabold"
-        android:text="@string/choose_space"
-        android:textColor="@color/black"
-        android:textSize="@dimen/textsize"
-        app:layout_constraintEnd_toEndOf="@+id/title2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/map" />-->
-
-    <!--<RelativeLayout
-        android:id="@+id/title2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="21dp"
-        android:layout_marginBottom="335dp"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/map" >
-
-
-
-    </RelativeLayout>-->
-
-    <!--
-
-    <RelativeLayout
-        android:id="@+id/title3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="230dp"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView"
-        app:layout_constraintVertical_bias="0.0">
-
-        <TextView
-            android:id="@+id/text3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:font="@font/nunito_extrabold"
-            android:text="@string/reserved_days"
-            android:textColor="@color/black"
-            android:textSize="@dimen/textsize" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/month"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="200dp"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title3"
-        app:layout_constraintVertical_bias="0.0">
-
-        <TextView
-            android:id="@+id/text4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:font="@font/nunito_extrabold"
-            android:textColor="@color/melon"
-            android:textSize="@dimen/monthsize"
-            android:text="@string/month"/>
-
-    </RelativeLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView2"
-        android:layout_width="0dp"
-        android:layout_height="172dp"
-        android:orientation="vertical"
-        android:layout_marginStart="23dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/month">
-
-    </androidx.recyclerview.widget.RecyclerView>-->
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
