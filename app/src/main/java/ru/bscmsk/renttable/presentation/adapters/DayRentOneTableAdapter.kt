@@ -1,22 +1,23 @@
 package ru.bscmsk.renttable.presentation.adapters
 
 import android.content.Context
-import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import ru.bscmsk.renttable.R
+import ru.bscmsk.renttable.presentation.fragments.Rent.RentViewModel
 import java.time.LocalDate
 
 class DayRentOneTableAdapter(
     private val context: Context,
-    private val list: ArrayList<LocalDate>,
 
+    var list: ArrayList<LocalDate>,
+    private val user: String,
+    private val table: Int,
+    vm: RentViewModel
 ):
     RecyclerView.Adapter<DayRentOneTableAdapter.MyViewHolder>() {
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -35,13 +36,34 @@ class DayRentOneTableAdapter(
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val data = list[position]
+
+        //getdayofWeek(day:string)
+        //надо перевести день недели
+        //Сам день недели писать сокращённо до 2 букв
+        //Пример результата "Пн"
+
         holder.day.text = data.dayOfWeek.toString()
         holder.date.text = data.dayOfMonth.toString()
-        holder.name.text = "Свободен"
+        holder.name.text = "ABOBA"//data.user
 
-        if (holder.name.text == "Свободен")
+
+        if (holder.name.text == user)
         {
-            holder.font.setBackgroundResource(R.drawable.reserved_days_push)
+            holder.font.setBackgroundResource(R.drawable.reserved_days_user)
+        }
+        if (holder.name.text != ""){
+            holder.font.setBackgroundResource(R.drawable.reversed_days)
+        }
+        else
+        {
+            holder.font.setOnClickListener(){
+
+                //vm.savedata(data,table,user)
+                //Так я передаю тебе день, стол и user-а который хочет это забить
+                //Ты сохраняешь это на сервер
+                //Мне возвращаешь получилоcь сохранить или нет
+
+            }
         }
     }
 

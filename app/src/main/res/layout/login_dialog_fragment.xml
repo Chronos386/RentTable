@@ -7,11 +7,9 @@
     android:background="@color/show_white">
 
     <TextView
-        android:id="@+id/UserName"
+        android:id="@+id/userName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:text = ""
 
 
         android:layout_marginTop="10dp"
@@ -24,8 +22,22 @@
         android:textSize="@dimen/textsize"
 
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:background="@null"
+
+        android:layout_marginStart="@dimen/left_margin"
+        android:layout_marginTop="5dp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userName">
+        >
+    </Spinner>
 
     <TextView
         android:id="@+id/list"
@@ -45,7 +57,22 @@
 
         android:textSize="@dimen/textsize"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UserName" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner_city" />
+
+    <Spinner
+        android:id="@+id/spinner_month"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:background="@null"
+
+        android:layout_marginStart="@dimen/left_margin"
+        android:layout_marginTop="5dp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/list">
+        >
+    </Spinner>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewPlace"
@@ -59,7 +86,7 @@
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/list"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_month"
         >
 
     </androidx.recyclerview.widget.RecyclerView>

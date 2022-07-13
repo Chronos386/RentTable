@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rent_graph_nav"
+    app:startDestination="@id/choiseofPlacesFragment">
+
+    <fragment
+        android:id="@+id/choiseofPlacesFragment"
+        android:name="ru.bscmsk.renttable.presentation.fragments.Rent.ChoiseofPlacesFragment"
+        android:label="fragment_choiseofplaces"
+        tools:layout="@layout/fragment_choiseofplaces" >
+        <action
+            android:id="@+id/action_choiseofPlacesFragment_to_choiseofDaysFragment"
+            app:destination="@id/choiseofDaysFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/choiseofDaysFragment"
+        android:name="ru.bscmsk.renttable.presentation.fragments.Rent.ChoiseofDaysFragment"
+        android:label="ChoiseofDaysFragment"
+        tools:layout="@layout/fragment_choiseofdays">
+        <argument
+            android:name="StartDate"
+            app:argType="string" />
+        <argument
+            android:name="EndDate"
+            app:argType="string" />
+    </fragment>
+</navigation>

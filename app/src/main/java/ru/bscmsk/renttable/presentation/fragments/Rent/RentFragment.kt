@@ -31,28 +31,21 @@ class RentFragment: Fragment() {
             val myDialogFragment = LoginDialogFragment()
             val manager = parentFragmentManager
             myDialogFragment.show(manager, "userDialog")
+
         }
-
-        if (savedInstanceState == null) {
-            childFragmentManager
-                .beginTransaction()
-                .add(binding.PlacesFragmentContainer.id, ChoiseofPlacesFragment())
-                .commit()
-        }
-
-
-
         return binding.root
     }
 
-    fun createList(){
-
-
-    }
     fun setSpinner(citylist: List<String>){
-        val citilistAdapter: ArrayAdapter<String> = ArrayAdapter<String> (requireContext(),R.layout.spinner_city_item,citylist)
-        citilistAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spinnerCity.adapter = citilistAdapter
+
+        //vm.getCityfromDB()
+        //Получить город из DB
+
+        val index:Int = citylist.indexOf("Москва")
+        val citylistAdapter: ArrayAdapter<String> = ArrayAdapter<String> (requireContext(),R.layout.spinner_city_item,citylist)
+        citylistAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spinnerCity.adapter = citylistAdapter
+        binding.spinnerCity.setSelection(index)
         binding.spinnerCity.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 //vm.rewriteCity(city:String) Здесь надо будет перезаписать город В БД

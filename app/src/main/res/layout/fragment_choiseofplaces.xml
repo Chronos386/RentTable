@@ -10,7 +10,7 @@
     <TextView
         android:id="@+id/text"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
 
         android:layout_marginStart="@dimen/left_margin"
         android:layout_marginBottom="95dp"
@@ -20,7 +20,6 @@
         android:textColor="@color/black"
         android:textSize="@dimen/textsize"
 
-        app:layout_constraintBottom_toTopOf="@+id/recyclerViewDay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,26 +27,26 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewPlace"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/left_margin"
 
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="5dp"
         android:orientation="horizontal"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/text"
+      />
 
-    </androidx.recyclerview.widget.RecyclerView>
 
     <TextView
         android:id="@+id/text1"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
 
         android:layout_marginStart="@dimen/left_margin"
-        android:layout_marginTop="75dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="0dp"
 
         android:font="@font/nunito_extrabold"
         android:text="@string/reserved_days"
@@ -55,10 +54,9 @@
         android:textColor="@color/black"
         android:textSize="@dimen/textsize"
 
-        app:layout_constraintBottom_toTopOf="@+id/recyclerViewDay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewPlace" />
 
     <Spinner
         android:id="@+id/spinner_month"
@@ -67,15 +65,11 @@
 
         android:background="@null"
 
-
         android:layout_marginStart="@dimen/left_margin"
-        android:layout_marginTop="108dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
 
-
-        app:layout_constraintBottom_toTopOf="@+id/recyclerViewDay"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/text1">
 
     </Spinner>
 
@@ -85,14 +79,15 @@
         android:layout_height="0dp"
 
         android:layout_marginStart="@dimen/left_margin"
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="10dp"
         android:orientation="vertical"
 
-        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/spinner_month"
+        app:layout_constraintBottom_toTopOf="@id/button"
+        >
 
     </androidx.recyclerview.widget.RecyclerView>
 
@@ -109,7 +104,7 @@
         android:font="@font/roboto"
         android:textSize="@dimen/buttonTextsize"
 
-        android:layout_marginTop="270dp"
+        android:layout_marginTop="340dp"
         android:layout_marginStart="@dimen/left_margin"
         android:layout_marginEnd="22dp"
 

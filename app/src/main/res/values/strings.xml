@@ -15,6 +15,9 @@
     <string name = "save">Сохранить  </string>
     <string name = "startDay">Выберите дату начала:  </string>
     <string name = "endDay">Выберите дату окончания:  </string>
+
+    <string name = "textalert">Данные вводятся в следующем формате:\nдд.мм.гггг </string>
+
     <string name = "pick"> Подобрать</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

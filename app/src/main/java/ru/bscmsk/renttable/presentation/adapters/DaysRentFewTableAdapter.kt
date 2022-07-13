@@ -11,7 +11,11 @@ import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ru.bscmsk.renttable.R
+import ru.bscmsk.renttable.databinding.ReservedDaysItemBinding
+import ru.bscmsk.renttable.databinding.ReservedSeatsItemBinding
+import ru.bscmsk.renttable.presentation.fragments.Rent.ChoiseofDaysFragment
 import ru.bscmsk.renttable.presentation.fragments.Rent.ModelRentItem
+import ru.bscmsk.renttable.presentation.fragments.Rent.RentViewModel
 import java.time.LocalDate
 
 
@@ -19,7 +23,10 @@ class DaysRentFewTableAdapter (
     private val context: Context,
     private val list: ArrayList<ModelRentItem>,
     private var recView1: RecyclerView,
-    private var recView2: RecyclerView
+    private var recView2: RecyclerView,
+    private var datelist: ArrayList<ModelRentItem>,
+    private var indexlist: List<Int>,
+    var vm: RentViewModel
     ):
     RecyclerView.Adapter<DaysRentFewTableAdapter.MyViewHolder>() {
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -38,11 +45,14 @@ class DaysRentFewTableAdapter (
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val data = list[position]
 
+        //index = отыскать list.position в datelist
+        val index = 0
+
         val russianWeeksName:List<String> = listOf("Пн","Вт","Ср","Чт","Пт","Сб","Вс")
 
         holder.day.text = russianWeeksName[data.day.dayOfWeek.value-1]
         holder.date.text = data.day.dayOfMonth.toString()
-        holder.but.text = data.list[0]
+        holder.but.text = data.list[indexlist[index]]
 
         holder.but.setOnClickListener{
             val adapter = Tables2Adapter(context = context, list = data.list,hold = holder)
@@ -63,6 +73,11 @@ class DaysRentFewTableAdapter (
         holder.but.doOnTextChanged { text, start, before, count ->
             recView1.visibility = View.INVISIBLE
             recView2.visibility = View.INVISIBLE
+
+            //vm.changeIndex(index,item)
+            //Я передаю позицию в массиве и число на которое это надо заменить
+            //Твоя задача тупо заменить элемент в массиве интов который ты создавал до этого
+
         }
     }
 
