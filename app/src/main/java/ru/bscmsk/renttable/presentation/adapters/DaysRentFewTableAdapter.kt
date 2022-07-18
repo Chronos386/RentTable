@@ -1,31 +1,27 @@
 package ru.bscmsk.renttable.presentation.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ru.bscmsk.renttable.R
-import ru.bscmsk.renttable.databinding.ReservedDaysItemBinding
-import ru.bscmsk.renttable.databinding.ReservedSeatsItemBinding
-import ru.bscmsk.renttable.presentation.fragments.Rent.ChoiseofDaysFragment
-import ru.bscmsk.renttable.presentation.fragments.Rent.ModelRentItem
+import ru.bscmsk.renttable.presentation.GetDayofWeek
 import ru.bscmsk.renttable.presentation.fragments.Rent.RentViewModel
-import java.time.LocalDate
+import ru.bscmsk.renttable.presentation.models.RentFewTables
+import ru.bscmsk.renttable.presentation.models.Table
 
 
 class DaysRentFewTableAdapter (
     private val context: Context,
-    private val list: ArrayList<ModelRentItem>,
+    private val list: List<RentFewTables>,
     private var recView1: RecyclerView,
     private var recView2: RecyclerView,
-    private var datelist: ArrayList<ModelRentItem>,
-    private var indexlist: List<Int>,
     var vm: RentViewModel
     ):
     RecyclerView.Adapter<DaysRentFewTableAdapter.MyViewHolder>() {
@@ -44,26 +40,24 @@ class DaysRentFewTableAdapter (
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val data = list[position]
-
-        //index = отыскать list.position в datelist
-        val index = 0
-
-        val russianWeeksName:List<String> = listOf("Пн","Вт","Ср","Чт","Пт","Сб","Вс")
-
-        holder.day.text = russianWeeksName[data.day.dayOfWeek.value-1]
-        holder.date.text = data.day.dayOfMonth.toString()
-        holder.but.text = data.list[indexlist[index]]
+        holder.day.text = GetDayofWeek(data.Date)
+        holder.date.text = data.Date.dayOfMonth.toString()
+        holder.but.text = data.Tablelist[data.currentIndex].number.toString()
 
         holder.but.setOnClickListener{
-            val adapter = Tables2Adapter(context = context, list = data.list,hold = holder)
+            var linearLayoutManager = LinearLayoutManager(context)
+            linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
+            linearLayoutManager.scrollToPositionWithOffset(data.Tablelist.indexOf(Table(holder.but.text.toString().toInt())),0)
+            val adapter = TablesInCurrentDayAdapter(context,list= data.Tablelist,hold = holder)
             if (position.mod(2) == 0){
+                recView1.layoutManager = linearLayoutManager
                 recView1.visibility = View.VISIBLE
                 recView2.visibility = View.INVISIBLE
-                recView1.scrollToPosition(holder.but.text.toString().toInt()-1)
                 recView1.adapter = adapter
             }
             else
             {
+                recView2.layoutManager = linearLayoutManager
                 recView1.visibility = View.INVISIBLE
                 recView2.visibility = View.VISIBLE
                 recView2.scrollToPosition(holder.but.text.toString().toInt()-1)
@@ -73,11 +67,9 @@ class DaysRentFewTableAdapter (
         holder.but.doOnTextChanged { text, start, before, count ->
             recView1.visibility = View.INVISIBLE
             recView2.visibility = View.INVISIBLE
-
-            //vm.changeIndex(index,item)
-            //Я передаю позицию в массиве и число на которое это надо заменить
-            //Твоя задача тупо заменить элемент в массиве интов который ты создавал до этого
-
+            vm.FreeTablesListLive.value!![vm.FreeTablesListLive.value!!.indexOf(list[position])].currentIndex =
+                list[position].Tablelist.indexOf(data.Tablelist.filter
+                { it.number == holder.but.text.toString().toInt()}[0])
         }
     }
 

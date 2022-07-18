@@ -111,8 +111,7 @@ fun BookingData.toDomain() = BookingDomain(
 fun BookingDomain.toPresentation() = BookingPresentation(
     region = this.region,
     user = this.user,
-    places = this.places,
-    dates = this.dates
+    datesWithPlaces = this.dates.zip(this.places).map { DateWithPlace(it.first, it.second) }
 )
 
 
@@ -123,6 +122,6 @@ fun NewBookingDomain.toData() = NewBookingData(
 
 fun NewBookingPresentation.toDomain() = NewBookingDomain(
     region = this.region,
-    places = this.places,
-    dates = this.dates
+    places = this.datesWithPlaces.map { it.place },
+    dates = this.datesWithPlaces.map { it.date }
 )

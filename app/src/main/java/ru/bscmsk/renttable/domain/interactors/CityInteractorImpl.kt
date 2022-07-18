@@ -30,6 +30,12 @@ class CityInteractorImpl @Inject constructor(
     override suspend fun getCity(): CityPresentation =
         cityRepository.getCity().toPresentation()
 
+    override suspend fun checkCity(): Boolean =
+        when (cityRepository.getCity().name) {
+            "" -> false
+            else -> true
+        }
+
     override suspend fun updateCity(city: CityPresentation) =
         cityRepository.updateCity(city.toDomain())
 }

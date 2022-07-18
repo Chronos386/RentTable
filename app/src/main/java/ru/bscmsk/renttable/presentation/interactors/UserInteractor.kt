@@ -6,5 +6,6 @@ import ru.bscmsk.renttable.presentation.models.UserPresentation
 interface UserInteractor {
     suspend fun enterAccount(user: UserPresentation): UserAuthorized
     suspend fun getUser(): UserPresentation
+    suspend fun checkUser(): Boolean
     suspend fun exitAccount()
 }

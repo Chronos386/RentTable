@@ -5,6 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!--<DatePicker
+    android:id="@+id/datePicker"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+
+    app:layout_constraintTop_toTopOf="parent"
+    android:layout_marginTop="48dp"/>-->
+
     <TextView
         android:id="@+id/textalert"
         android:layout_width="0dp"
@@ -44,6 +52,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textalert"
         />
+
 
     <EditText
         android:id="@+id/editTextDateBegin"

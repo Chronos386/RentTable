@@ -6,6 +6,7 @@
         <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2485" />
         <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/drawable/buttom_corner.xml" value="0.1935" />
         <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/drawable/buttom_corner2.xml" value="0.1935" />
+        <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/drawable/buttonshape.xml" value="0.1" />
         <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/drawable/corner.xml" value="0.33" />
         <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/drawable/day_colorstyle.xml" value="0.1965" />
         <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/drawable/day_on.xml" value="0.1965" />
@@ -13,7 +14,13 @@
         <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/drawable/day_textstyle.xml" value="0.1945" />
         <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/drawable/dialog_bg.xml" value="0.1965" />
         <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1975" />
+        <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/drawable/reserved_days_occupied.xml" value="0.1235" />
+        <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/drawable/reserved_days_occupied_user.xml" value="0.1235" />
+        <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/drawable/reserved_days_occupired.xml" value="0.163" />
         <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/drawable/reserved_days_push.xml" value="0.13" />
+        <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/drawable/reversed_days.xml" value="0.163" />
+        <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/drawable/reversed_days_push_user.xml" value="0.163" />
+        <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/drawable/roundstyle.xml" value="0.1875" />
         <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/drawable/table_corner.xml" value="0.1" />
         <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/drawable/table_corner_default.xml" value="0.191" />
         <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/drawable/table_corner_push.xml" value="0.1" />
@@ -23,7 +30,7 @@
         <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/layout/city_item.xml" value="0.5" />
         <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/layout/day_item.xml" value="0.9" />
         <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/layout/dialog_bg.xml" value="0.18854166666666666" />
-        <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/layout/fragment_choicedaysperiod.xml" value="0.3453125" />
+        <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/layout/fragment_choicedaysperiod.xml" value="0.2723529411764706" />
         <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/layout/fragment_choiseofdays.xml" value="0.3609375" />
         <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/layout/fragment_choiseofplaces.xml" value="0.4187866927592955" />
         <entry key="..\:/Institute/MOBILE/RealProject/Practica/renttable/app/src/main/res/layout/fragment_city_list.xml" value="0.16032608695652173" />

@@ -6,7 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import ru.bscmsk.renttable.MainActivity
 import ru.bscmsk.renttable.app.appComponent
 import ru.bscmsk.renttable.databinding.FragmentCitylistBinding
 import ru.bscmsk.renttable.presentation.adapters.CitiesAdapter
@@ -21,7 +24,8 @@ class CityListFragment : Fragment() {
     private var cityList = ArrayList<CityPresentation>()
     private val viewModel: CityListViewModel by viewModels {
         CityListViewModelFactory(
-            requireActivity().appComponent.cityInteractor
+            requireActivity().appComponent.cityInteractor,
+            requireActivity().appComponent.userInteractor
         )
     }
 
@@ -29,11 +33,20 @@ class CityListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        super.onCreateView(inflater, container, savedInstanceState)
         binding = FragmentCitylistBinding.inflate(inflater, container, false)
         viewModel.getCities()
         viewModel.resultLive.observe(viewLifecycleOwner) {
             cityList = it
             createList()
+        }
+
+        viewModel.gotoRentLive.observe(viewLifecycleOwner){
+            findNavController().navigate(CityListFragmentDirections.actionCityListFragmentToRentFragment())
+        }
+
+        viewModel.ExitAccountLive.observe(viewLifecycleOwner){
+            (activity as MainActivity).gotoLoginFragment()
         }
         return binding.root
     }

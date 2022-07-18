@@ -1,8 +1,8 @@
 package ru.bscmsk.renttable.presentation.adapters
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +10,14 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.bscmsk.renttable.R
+import ru.bscmsk.renttable.presentation.models.Table
 
-class Tables2Adapter(private val context: Context, private val list: List<String>,private var hold:DaysRentFewTableAdapter.MyViewHolder):
-    RecyclerView.Adapter<Tables2Adapter.MyViewHolder>() {
+class TablesInCurrentDayAdapter(
+    private val context: Context,
+    private val list: List<Table>,
+    private var hold:DaysRentFewTableAdapter.MyViewHolder
+    ):
+    RecyclerView.Adapter<TablesInCurrentDayAdapter.MyViewHolder>() {
 
     private var selectedItemPosition: Int = hold.but.text.toString().toInt()-1
 
@@ -32,7 +37,7 @@ class Tables2Adapter(private val context: Context, private val list: List<String
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val data = list.get(position)
 
-        holder.text.text = data
+        holder.text.text = data.number.toString()
 
         if (selectedItemPosition == position)
         {
@@ -47,7 +52,7 @@ class Tables2Adapter(private val context: Context, private val list: List<String
 
         holder.table.setOnClickListener {
             if (selectedItemPosition != position)
-                hold.but.text = data
+                hold.but.text = data.number.toString()
         }
     }
 

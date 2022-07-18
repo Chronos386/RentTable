@@ -2,8 +2,15 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/graf_nav"
-    app:startDestination="@id/rentFragment">
+    android:id="@+id/graf_nav">
+
+
+    <!--<activity
+        android:id="@+id/mainActivity"
+        android:name="ru.bscmsk.renttable.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" >
+    </activity>-->
 
     <fragment
         android:id="@+id/loginFragment"
@@ -23,14 +30,7 @@
             android:id="@+id/action_cityListFragment_to_rentFragment"
             app:destination="@id/rentFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/baseFragment"
-        android:name="ru.bscmsk.renttable.presentation.fragments.BaseFragment"
-        android:label="BaseFragment" >
-        <action
-            android:id="@+id/action_baseFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-    </fragment>
+
     <fragment
         android:id="@+id/rentFragment"
         android:name="ru.bscmsk.renttable.presentation.fragments.Rent.RentFragment"

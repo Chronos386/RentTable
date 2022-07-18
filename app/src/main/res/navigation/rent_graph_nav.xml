@@ -19,11 +19,5 @@
         android:name="ru.bscmsk.renttable.presentation.fragments.Rent.ChoiseofDaysFragment"
         android:label="ChoiseofDaysFragment"
         tools:layout="@layout/fragment_choiseofdays">
-        <argument
-            android:name="StartDate"
-            app:argType="string" />
-        <argument
-            android:name="EndDate"
-            app:argType="string" />
     </fragment>
 </navigation>

@@ -7,5 +7,6 @@ interface CityInteractor {
     suspend fun getCitiesList(): Returnable
     suspend fun saveCity(city: CityPresentation)
     suspend fun getCity(): CityPresentation
+    suspend fun checkCity(): Boolean
     suspend fun updateCity(city: CityPresentation)
 }

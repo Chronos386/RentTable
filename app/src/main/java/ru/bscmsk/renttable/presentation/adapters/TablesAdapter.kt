@@ -10,10 +10,16 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.bscmsk.renttable.R
+import ru.bscmsk.renttable.presentation.fragments.Rent.RentViewModel
+import ru.bscmsk.renttable.presentation.models.Table
 
-class TablesAdapter(private val context: Context, private val list: List<String>):
+class TablesAdapter(
+    private val context: Context,
+    private val list: List<Table>,
+    private var index: Int,
+    private var vm: RentViewModel
+    ):
     RecyclerView.Adapter<TablesAdapter.MyViewHolder>() {
-    private var selectedItemPosition: Int = -1
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var table = view.findViewById<RelativeLayout>(R.id.table) as RelativeLayout
         var text = view.findViewById<TextView>(R.id.text) as TextView
@@ -29,9 +35,9 @@ class TablesAdapter(private val context: Context, private val list: List<String>
     override fun onBindViewHolder(holder: MyViewHolder, @SuppressLint("RecyclerView") position: Int) {
         val data = list.get(position)
 
-        holder.text.text = data
+        holder.text.text = data.number.toString()
 
-        if (selectedItemPosition == position)
+        if (index == position)
         {
             holder.text.setTextColor(Color.WHITE)
             holder.table.setBackgroundResource(R.drawable.table_style_push)
@@ -43,7 +49,10 @@ class TablesAdapter(private val context: Context, private val list: List<String>
         }
 
         holder.table.setOnClickListener {
-            selectedItemPosition = position
+            val newindex = holder.text.text.toString().toInt()-1
+            index = newindex
+            vm.changeIndex(newindex)
+
             notifyDataSetChanged()
         }
     }

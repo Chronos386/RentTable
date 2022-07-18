@@ -15,6 +15,8 @@
     <string name = "save">Сохранить  </string>
     <string name = "startDay">Выберите дату начала:  </string>
     <string name = "endDay">Выберите дату окончания:  </string>
+    <string name="setDates">Установите\nдаты </string>
+    <string name="changeDates">Измените\nдаты</string>
 
     <string name = "textalert">Данные вводятся в следующем формате:\nдд.мм.гггг </string>
 

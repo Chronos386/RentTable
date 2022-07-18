@@ -10,120 +10,112 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import ru.bscmsk.renttable.MainActivity
 import ru.bscmsk.renttable.R
+import ru.bscmsk.renttable.app.appComponent
 import ru.bscmsk.renttable.databinding.LoginDialogFragmentBinding
 import ru.bscmsk.renttable.presentation.adapters.*
+import ru.bscmsk.renttable.presentation.getMonth
+import ru.bscmsk.renttable.presentation.models.CityPresentation
+import ru.bscmsk.renttable.presentation.models.DateWithPlace
+import ru.bscmsk.renttable.presentation.models.Month
+import ru.bscmsk.renttable.presentation.translateMonthtoInt
+
 import java.time.LocalDate
 
 class LoginDialogFragment: DialogFragment() {
     private lateinit var binding: LoginDialogFragmentBinding
 
-    val vmFactory: RentViewModelFactory = RentViewModelFactory()
-    private lateinit var vm: RentViewModel
+    private val vm: RentViewModel by viewModels {
+        RentViewModelFactory(
+            cityInteractor = requireActivity().appComponent.cityInteractor,
+            userInteractor = requireActivity().appComponent.userInteractor,
+            rentInteractor = requireActivity().appComponent.rentInteractor
+        )
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState:
     Bundle?): View {
         binding = LoginDialogFragmentBinding.inflate(LayoutInflater.from(context),container,false)
-        vm = ViewModelProvider(this,vmFactory).get(RentViewModel::class.java)
-        //vm.getCityList() надо получить список городов
-        //Можешь LiveData не использовать
-        binding.userName.text ="Пользователь: Зубенко Михаил Петрович"
 
-        val citylist = ArrayList<String>()
-        citylist.add("Москва")
-        citylist.add("Питер")
-        setSpinner(citylist,user ="Ab")
+        vm.getUserCityList() //надо получить список городов
+
+        vm.getUser().observe(viewLifecycleOwner){
+            binding.userName.text ="Пользователь: "+it.login.toString()
+        }
+
+        vm.UserCityListLive.observe(viewLifecycleOwner){
+            setSpinner(it)
+        }
+
+
+        //Можешь LiveData не использовать
+
 
         binding.recyclerViewPlace.addItemDecoration(HorisontalSpaceItemDecoration(8))
         val linearLayoutManager = LinearLayoutManager(requireContext())
-        linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
+        linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
         binding.recyclerViewPlace.layoutManager = linearLayoutManager
 
-
-
-
         binding.buttonexit.setOnClickListener{
+            vm.ExitAccount()
+        }
 
+        vm.ExitAccountLive.observe(viewLifecycleOwner){
+            (activity as MainActivity).gotoLoginFragment()
+            this.dismiss()
         }
 
         return binding.root
     }
 
-    fun setSpinner(citylist: List<String>, user: String){
-        val citilistAdapter: ArrayAdapter<String> = ArrayAdapter<String> (requireContext(),R.layout.spinner_city_item,citylist)
-        citilistAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        //vm.getCityfromDB()
-        //Получить город из DB
+    fun setSpinner(citylist: List<CityPresentation>){
 
-        val index:Int = citylist.indexOf("Москва")
-        binding.spinnerCity.setSelection(index)
-        binding.spinnerCity.adapter = citilistAdapter
+        val citylistAdapter = SpinnerCityAdapter(requireContext(),citylist)
+        binding.spinnerCity.adapter = citylistAdapter
 
         binding.spinnerCity.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                getMonthes(city = parent!!.getItemAtPosition(position).toString(),user = user)
+                getMonthes(city = parent!!.getItemAtPosition(position) as CityPresentation)
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
             }
         }
     }
-    fun getMonthes(city: String, user: String) {
-        //Получить список месяцев на русском
-        //Входные данные city и user
-
-        val monthlist:List<String>  = listOf("Июль","Август")
-        val monthlistAdapter: ArrayAdapter<String> = ArrayAdapter<String> (requireContext(),
-            R.layout.spinner_month_item,monthlist)
-        monthlistAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spinnerMonth.adapter = monthlistAdapter
-
-        binding.spinnerMonth.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            )
-            {
-                getMonthDataList(user = user, month =  parent!!.getItemAtPosition(position).toString())
+    fun getMonthes(city: CityPresentation) {
+        vm.getUserData(city)
+        vm.UserDataListLive.observe(viewLifecycleOwner){list->
+            val newlist = list.sortedBy { it.date }
+            val dates = ArrayList<LocalDate>()
+            newlist.forEach {
+                dates.add(it.date)
             }
+            val monthes = getMonth(dates)
+            val monthlistAdapter = SpinnerMonthAdapter(requireContext(),monthes)
+            binding.spinnerMonth.adapter = monthlistAdapter
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {
+            binding.spinnerMonth.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                )
+                {
+                    val month = parent!!.getItemAtPosition(position) as Month
+                    val MonthDate = newlist.filter{it.date.month.value == translateMonthtoInt(month.name)} as ArrayList<DateWithPlace>
+                    val adapter = UserRentTablesAdapter(context = requireContext(),list = MonthDate , vm)
+                    binding.recyclerViewPlace.adapter = adapter
+                }
+                override fun onNothingSelected(parent: AdapterView<*>?) {
 
+                }
             }
         }
-
     }
-
-    fun getMonthDataList(user: String, month: String){
-        //vm.getdates(month,user)
-        //Я передаю тебе месяц на русском и пользователя
-        //Надо вернуть список забронированных мест пользователем в этом месяце
-
-        var list: ArrayList<LocalDate> = ArrayList()
-        var date = LocalDate.of(2022,7,6)
-        list.add(date)
-        date = LocalDate.of(2022,7,7)
-        list.add(date)
-        date = LocalDate.of(2022,7,8)
-        list.add(date)
-        date = LocalDate.of(2022,7,9)
-        list.add(date)
-        date = LocalDate.of(2022,7,10)
-        list.add(date)
-        date = LocalDate.of(2022,7,11)
-        list.add(date)
-        date = LocalDate.of(2022,7,12)
-        list.add(date)
-
-
-        val adapter = UserRentTablesAdapter(context = requireContext(),list = list,user = "ab", vm)
-        binding.recyclerViewPlace.adapter = adapter
-    }
-
-
-
 }

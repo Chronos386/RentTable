@@ -3,7 +3,6 @@ package ru.bscmsk.renttable.presentation.viewModels.viewFactories
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import ru.bscmsk.renttable.presentation.interactors.UserInteractor
-import ru.bscmsk.renttable.presentation.viewModels.BaseViewModel
 import ru.bscmsk.renttable.presentation.viewModels.LoginViewModel
 
 class LoginViewModelFactory(

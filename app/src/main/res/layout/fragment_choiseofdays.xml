@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginStart="45dp"
+        android:layout_marginStart="40dp"
         android:font="@font/nunito_extrabold"
         android:text="@string/suggested_places"
 
@@ -26,7 +26,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
 
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="5dp"
         android:layout_marginBottom="20dp"
         android:layout_marginEnd="10dp"
 
@@ -40,15 +40,15 @@
 
 
     <Button
-        android:id = "@+id/changeDataButton"
+        android:id="@+id/changeDateButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/buttom_corner"
-        android:font="@font/roboto"
-        android:text="Сменить\nдату"
 
-        android:layout_marginEnd="@dimen/left_margin"
-        android:layout_marginStart="@dimen/left_margin"
+        android:font="@font/roboto"
+        android:text="@string/setDates"
 
 
         android:textSize="@dimen/buttonTextsize"
@@ -57,8 +57,7 @@
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/text"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/spinner_month"
@@ -100,7 +99,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
 
-        app:layout_constraintTop_toBottomOf="@+id/changeDataButton"
+        app:layout_constraintTop_toBottomOf="@+id/changeDateButton"
         app:layout_constraintVertical_bias="0.0"
         app:spanCount="2">
 
@@ -122,7 +121,7 @@
         android:orientation="vertical"
 
         app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/changeDataButton"
+        app:layout_constraintTop_toBottomOf="@+id/changeDateButton"
         app:layout_constraintStart_toStartOf="parent"
         />
 
@@ -141,7 +140,7 @@
         android:orientation="vertical"
 
         app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/changeDataButton"
+        app:layout_constraintTop_toBottomOf="@+id/changeDateButton"
         app:layout_constraintEnd_toEndOf="parent"
         >
 
@@ -153,12 +152,13 @@
         android:layout_height="52dp"
         android:theme = "@style/Buttom.Melon"
         android:background="@drawable/buttom_corner"
+        android:visibility="invisible"
         android:font="@font/roboto"
 
         android:textSize="@dimen/buttonTextsize"
         android:text="@string/save"
 
-        android:layout_marginTop="340dp"
+        android:layout_marginTop="270dp"
         android:layout_marginStart="@dimen/left_margin"
         android:layout_marginEnd="22dp"
 

@@ -20,7 +20,9 @@ class LoginViewModel(
                     println("Входим на следующую страницу")
                     resultEnter.value = true
                 }
-                is UserAuthorized.NotAuthorized -> resultEnter.value = false
+                is UserAuthorized.NotAuthorized -> {
+                    resultEnter.value =  false
+                }
             }
         }
     }

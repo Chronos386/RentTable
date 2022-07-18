@@ -104,7 +104,7 @@
         android:font="@font/roboto"
         android:textSize="@dimen/buttonTextsize"
 
-        android:layout_marginTop="340dp"
+        android:layout_marginTop="270dp"
         android:layout_marginStart="@dimen/left_margin"
         android:layout_marginEnd="22dp"
 

@@ -8,21 +8,41 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import ru.bscmsk.renttable.MainActivity
 import ru.bscmsk.renttable.R
+import ru.bscmsk.renttable.app.appComponent
 import ru.bscmsk.renttable.databinding.FragmentRentBinding
+import ru.bscmsk.renttable.presentation.adapters.SpinnerCityAdapter
+import ru.bscmsk.renttable.presentation.models.CityPresentation
+import ru.bscmsk.renttable.presentation.viewModels.CommonRentViewModel
+import ru.bscmsk.renttable.presentation.viewModels.viewFactories.CommonRentViewModelFactory
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.util.*
 
 class RentFragment: Fragment() {
     private lateinit var binding: FragmentRentBinding
-    val vmFactory: RentViewModelFactory = RentViewModelFactory()
-    private lateinit var vm: RentViewModel
+    private val vm: RentViewModel by viewModels {
+        RentViewModelFactory(
+            cityInteractor = requireActivity().appComponent.cityInteractor,
+            userInteractor = requireActivity().appComponent.userInteractor,
+            rentInteractor = requireActivity().appComponent.rentInteractor
+        )
+    }
+    private val commonvm: CommonRentViewModel by activityViewModels {
+        CommonRentViewModelFactory(
+            cityInteractor = requireActivity().appComponent.cityInteractor
+        )
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentRentBinding.inflate(inflater, container, false)
-        vm = ViewModelProvider(this,vmFactory).get(RentViewModel::class.java)
-        //vm.getCityList() надо получить список городов
 
+        vm.getCityList()
         vm.CityListLive.observe(viewLifecycleOwner, Observer {
             setSpinner(it)
         })
@@ -33,26 +53,27 @@ class RentFragment: Fragment() {
             myDialogFragment.show(manager, "userDialog")
 
         }
+        vm.ExitAccountLive.observe(viewLifecycleOwner){
+            (activity as MainActivity).gotoLoginFragment()
+        }
+
         return binding.root
     }
+    fun setSpinner(citylist: List<CityPresentation>){
 
-    fun setSpinner(citylist: List<String>){
-
-        //vm.getCityfromDB()
-        //Получить город из DB
-
-        val index:Int = citylist.indexOf("Москва")
-        val citylistAdapter: ArrayAdapter<String> = ArrayAdapter<String> (requireContext(),R.layout.spinner_city_item,citylist)
-        citylistAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        val citylistAdapter = SpinnerCityAdapter(requireContext(),citylist)
         binding.spinnerCity.adapter = citylistAdapter
-        binding.spinnerCity.setSelection(index)
+
+        vm.getCityFromDB().observe(viewLifecycleOwner) {
+            val index:Int = citylist.indexOf(it)
+            binding.spinnerCity.setSelection(index)
+        }
         binding.spinnerCity.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                //vm.rewriteCity(city:String) Здесь надо будет перезаписать город В БД
-                //Также нужна будет переменная, которая будет отслеживаться ChoiseOfPlacesFragment
-
+                commonvm.rewriteCity(parent!!.getItemAtPosition(position) as CityPresentation)
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
+
 
             }
 
@@ -60,4 +81,6 @@ class RentFragment: Fragment() {
 
     }
 
+
 }
+

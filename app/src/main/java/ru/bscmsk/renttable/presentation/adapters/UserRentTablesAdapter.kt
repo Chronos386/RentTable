@@ -8,13 +8,14 @@ import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ru.bscmsk.renttable.databinding.ReservedSeatsItemBinding
+import ru.bscmsk.renttable.presentation.GetDayofWeek
 import ru.bscmsk.renttable.presentation.fragments.Rent.RentViewModel
+import ru.bscmsk.renttable.presentation.models.DateWithPlace
 import java.time.LocalDate
 
 class UserRentTablesAdapter(
     private val context: Context,
-    private val list: ArrayList<LocalDate>,
-    val user: String,
+    private val list: ArrayList<DateWithPlace>,
     var vm: RentViewModel
 ): RecyclerView.Adapter<UserRentTablesAdapter.MyViewHolder>() {
     inner class MyViewHolder(view: ReservedSeatsItemBinding) : RecyclerView.ViewHolder(view.root) {
@@ -32,17 +33,14 @@ class UserRentTablesAdapter(
     override fun onBindViewHolder(holder: UserRentTablesAdapter.MyViewHolder, position: Int) {
         val data = list[position]
 
-        holder.date.text = data.dayOfMonth.toString()
-        holder.day.text = data.dayOfWeek.toString()
-        holder.but.text = "0"
+        holder.date.text = data.date.dayOfMonth.toString()
+        holder.day.text = GetDayofWeek(data.date)
+        holder.but.text = data.place.toString()
 
         holder.font.setOnClickListener(){
             //vm.deleterent(date,user,city)
-            //Надо удалить запись Юзера по этой дате (можно ещё передать table если тебе так удобнее)
-
+            //Такого пока нету)
             list.removeAt(holder.getAdapterPosition())
-            notifyItemRemoved(holder.getAdapterPosition())
-            notifyItemRangeChanged(holder.getAdapterPosition(),list.size)
         }
     }
 

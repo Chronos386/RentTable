@@ -17,6 +17,12 @@ class UserInteractorImpl @Inject constructor(
     override suspend fun getUser(): UserPresentation =
         userRepository.getUser().toPresentation()
 
+    override suspend fun checkUser(): Boolean =
+        when (userRepository.getUser().login) {
+            "" -> false
+            else -> true
+        }
+
     override suspend fun exitAccount() =
         userRepository.exitAccount()
 }

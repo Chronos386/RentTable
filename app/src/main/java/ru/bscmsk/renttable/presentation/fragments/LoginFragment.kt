@@ -26,34 +26,32 @@ class LoginFragment: Fragment() {
                               savedInstanceState: Bundle?): View {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
 
-
-        Log.e("AAA","БЛЭТ")
         val button = binding.ButtonEnterLogin
         val errorText = binding.ErorText
-        val loginEditText = binding.loginEditText
-        val passwordEditText = binding.passwordEditText
+        val loginText = binding.LoginEnterField
+        val passwordText = binding.PasswordEnterField
 
-        Log.e("AAA","БЛЭТ2")
+
+
 
         button.setOnClickListener {
-            if(loginEditText.text.isEmpty()) {
+            if(loginText.text.toString().isEmpty()) {
                 errorText.setTextColor(resources.getColor(R.color.red, null))
                 errorText.text = "Введите логин."
             }
             else {
-                if(passwordEditText.text.isEmpty()) {
+                if(loginText.text.toString().isEmpty()) {
                     errorText.setTextColor(resources.getColor(R.color.red, null))
                     errorText.text = "Введите пароль."
                 }
                 else
-                    viewModel.enterToAccount(loginEditText.text.toString(),
-                        passwordEditText.text.toString())
+                    viewModel.enterToAccount(loginText.text.toString(),
+                        passwordText.text.toString())
             }
 
         }
 
         viewModel.resultEnter.observe(viewLifecycleOwner) {
-            Log.e("AAA","HEY")
             if (it == false) {
                 errorText.setTextColor(resources.getColor(R.color.red, null))
                 errorText.text = "Логин или пароль введены неверно. Повторите попытку."

@@ -5,73 +5,117 @@
     android:id="@+id/fragment_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context = "ru.bscmsk.renttable.presentation.fragments.LoginFragment">
+    android:background="@drawable/roundstyle"
+    tools:context="ru.bscmsk.renttable.presentation.fragments.LoginFragment">
 
- <EditText
-     android:id="@+id/login_editText"
-     android:layout_width="300dp"
-     android:layout_height="60dp"
-     android:layout_marginBottom="8dp"
-     android:ems="10"
-     android:autofillHints="@string/login"
-     android:hint="@string/login"
-     android:inputType="textPersonName"
-     android:textAlignment="center"
-     android:selectAllOnFocus="true"
-     app:layout_constraintBottom_toTopOf="@+id/password_editText"
-     app:layout_constraintEnd_toEndOf="parent"
-     app:layout_constraintHorizontal_bias="0.502"
-     app:layout_constraintStart_toStartOf="parent" />
-
- <EditText
-     android:id="@+id/password_editText"
-     android:layout_width="300dp"
-     android:layout_height="60dp"
-     android:layout_marginBottom="8dp"
-     android:ems="10"
-     android:autofillHints="@string/password"
-     android:hint="@string/password"
-     android:inputType="textPassword"
-     android:textAlignment="center"
-     app:layout_constraintBottom_toTopOf="@+id/ButtonEnterLogin"
-     app:layout_constraintEnd_toEndOf="parent"
-     app:layout_constraintHorizontal_bias="0.502"
-     app:layout_constraintStart_toStartOf="parent" />
 
  <TextView
      android:id="@+id/ErorText"
-     android:layout_width="303dp"
-     android:layout_height="52dp"
-     android:layout_marginBottom="24dp"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_marginTop="16dp"
      android:text="@string/Error_field"
      android:textAlignment="center"
-     app:layout_constraintBottom_toTopOf="@+id/login_editText"
+     android:textColor="@color/grey"
      app:layout_constraintEnd_toEndOf="parent"
      app:layout_constraintHorizontal_bias="0.504"
-     app:layout_constraintStart_toStartOf="parent" />
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintTop_toBottomOf="@+id/textView" />
 
  <Button
      android:id="@+id/ButtonEnterLogin"
-     android:layout_width="300dp"
+     android:layout_width="350dp"
      android:layout_height="wrap_content"
-     android:layout_marginBottom="150dp"
-     android:text="@string/enter"
-     app:layout_constraintBottom_toBottomOf="parent"
+     android:layout_marginTop="16dp"
+     android:background="@drawable/buttonshape"
+     android:backgroundTint="@color/melon"
+     android:text="Войти"
+     android:theme="@style/Buttom.Melon"
      app:layout_constraintEnd_toEndOf="parent"
      app:layout_constraintHorizontal_bias="0.5"
-     app:layout_constraintStart_toStartOf="parent" />
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
  <TextView
      android:id="@+id/textView"
      android:layout_width="wrap_content"
      android:layout_height="wrap_content"
-     android:layout_marginBottom="16dp"
+     android:layout_marginTop="32dp"
      android:text="@string/Hello_login_fragment"
-     android:textAlignment="textStart"
+     android:textAlignment="center"
+     android:textColor="@color/black"
      android:textSize="20sp"
      android:textStyle="bold"
-     app:layout_constraintBottom_toTopOf="@+id/ErorText"
      app:layout_constraintEnd_toEndOf="parent"
      app:layout_constraintHorizontal_bias="0.5"
-     app:layout_constraintStart_toStartOf="parent" />
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintTop_toTopOf="parent" />
+
+ <ImageView
+     android:id="@+id/imageView"
+     android:layout_width="92dp"
+     android:layout_height="37dp"
+     android:layout_marginTop="16dp"
+     android:src="@drawable/bscimage"
+     app:layout_constraintEnd_toEndOf="parent"
+     app:layout_constraintHorizontal_bias="0.5"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintTop_toBottomOf="@+id/ButtonEnterLogin" />
+
+ <TextView
+     android:id="@+id/Version"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_marginTop="8dp"
+     android:text="Version 1.0.00"
+     android:textAlignment="center"
+     android:textColor="@color/grey"
+     android:textSize="10sp"
+     app:layout_constraintEnd_toEndOf="parent"
+     app:layout_constraintHorizontal_bias="0.5"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+ <com.google.android.material.textfield.TextInputLayout
+
+     android:id="@+id/LayoutTextLogin"
+     android:layout_width="350dp"
+     android:layout_height="wrap_content"
+     android:layout_marginTop="16dp"
+     app:boxStrokeColor="@color/melon"
+     app:hintTextColor="@color/melon"
+     app:layout_constraintEnd_toEndOf="parent"
+     app:layout_constraintHorizontal_bias="0.5"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintTop_toBottomOf="@+id/ErorText"
+     app:startIconDrawable="@drawable/loginimg">
+
+  <com.google.android.material.textfield.TextInputEditText
+      android:id="@+id/LoginEnterField"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:hint="Логин" />
+ </com.google.android.material.textfield.TextInputLayout>
+
+ <com.google.android.material.textfield.TextInputLayout
+     android:id="@+id/textInputLayout"
+     android:layout_width="350dp"
+     android:layout_height="wrap_content"
+     android:layout_marginTop="8dp"
+     app:boxStrokeColor="@color/melon"
+     app:endIconMode="password_toggle"
+     app:hintTextColor="@color/melon"
+     app:layout_constraintEnd_toEndOf="parent"
+     app:layout_constraintHorizontal_bias="0.5"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintTop_toBottomOf="@+id/LayoutTextLogin"
+     app:startIconDrawable="@drawable/passwordimg">
+
+  <com.google.android.material.textfield.TextInputEditText
+      android:id="@+id/PasswordEnterField"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:hint="Пароль" />
+ </com.google.android.material.textfield.TextInputLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,23 +1,30 @@
 package ru.bscmsk.renttable.presentation.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import ru.bscmsk.renttable.R
+import ru.bscmsk.renttable.presentation.GetDayofWeek
 import ru.bscmsk.renttable.presentation.fragments.Rent.RentViewModel
+import ru.bscmsk.renttable.presentation.interfaces.CityInterface
+import ru.bscmsk.renttable.presentation.interfaces.RentInterface
+import ru.bscmsk.renttable.presentation.models.*
 import java.time.LocalDate
+import java.time.MonthDay
 
 class DayRentOneTableAdapter(
     private val context: Context,
-
-    var list: ArrayList<LocalDate>,
-    private val user: String,
-    private val table: Int,
-    vm: RentViewModel
+    var list: ArrayList<RentOneTable>,
+    private val user: UserPresentation,
+    private val table: Table,
+    private val city: CityPresentation,
+    private val myOnClick: RentInterface
 ):
     RecyclerView.Adapter<DayRentOneTableAdapter.MyViewHolder>() {
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -37,32 +44,32 @@ class DayRentOneTableAdapter(
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val data = list[position]
 
-        //getdayofWeek(day:string)
-        //надо перевести день недели
-        //Сам день недели писать сокращённо до 2 букв
-        //Пример результата "Пн"
-
-        holder.day.text = data.dayOfWeek.toString()
-        holder.date.text = data.dayOfMonth.toString()
-        holder.name.text = "ABOBA"//data.user
+        holder.day.text = GetDayofWeek(data.Date)
+        holder.date.text = data.Date.dayOfMonth.toString()
+        holder.name.text = data.login
 
 
-        if (holder.name.text == user)
+        if (data.login == user.login)
         {
             holder.font.setBackgroundResource(R.drawable.reserved_days_user)
-        }
-        if (holder.name.text != ""){
-            holder.font.setBackgroundResource(R.drawable.reversed_days)
+            holder.font.setOnClickListener(){
+                val DataforSaving = ArrayList<DateWithPlace>()
+                DataforSaving.add(DateWithPlace(data.Date,table.number))
+            }
         }
         else
         {
-            holder.font.setOnClickListener(){
-
-                //vm.savedata(data,table,user)
-                //Так я передаю тебе день, стол и user-а который хочет это забить
-                //Ты сохраняешь это на сервер
-                //Мне возвращаешь получилоcь сохранить или нет
-
+            if (holder.name.text != ""){
+                holder.font.setBackgroundResource(R.drawable.reversed_days)
+            }
+            else
+            {
+                holder.font.setBackgroundResource(R.drawable.table_style_default)
+                holder.font.setOnClickListener(){
+                    val DataforSaving = ArrayList<DateWithPlace>()
+                    DataforSaving.add(DateWithPlace(data.Date,table.number))
+                    myOnClick.onClicked(NewBookingPresentation(region = city.name, datesWithPlaces = DataforSaving))
+                }
             }
         }
     }
