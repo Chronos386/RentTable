@@ -3,21 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rent_graph_nav"
-    app:startDestination="@id/choiseofPlacesFragment">
+    app:startDestination="@id/choiceOfPlacesFragment">
 
     <fragment
-        android:id="@+id/choiseofPlacesFragment"
-        android:name="ru.bscmsk.renttable.presentation.fragments.Rent.ChoiseofPlacesFragment"
+        android:id="@+id/choiceOfPlacesFragment"
+        android:name="ru.bscmsk.renttable.presentation.fragments.rent.ChoiceOfPlacesFragment"
         android:label="fragment_choiseofplaces"
         tools:layout="@layout/fragment_choiseofplaces" >
         <action
-            android:id="@+id/action_choiseofPlacesFragment_to_choiseofDaysFragment"
-            app:destination="@id/choiseofDaysFragment" />
+            android:id="@+id/action_choiceOfPlacesFragment_to_choiceOfDaysFragment"
+            app:destination="@id/choiceOfDaysFragment"
+            />
     </fragment>
     <fragment
-        android:id="@+id/choiseofDaysFragment"
-        android:name="ru.bscmsk.renttable.presentation.fragments.Rent.ChoiseofDaysFragment"
-        android:label="ChoiseofDaysFragment"
+        android:id="@+id/choiceOfDaysFragment"
+        android:name="ru.bscmsk.renttable.presentation.fragments.rent.ChoiceOfDaysFragment"
+        android:label="ChoiceOfDaysFragment"
         tools:layout="@layout/fragment_choiseofdays">
+        <action
+            android:id="@+id/action_choiceOfDaysFragment_to_choiceOfPlacesFragment"
+            app:destination="@id/choiceOfPlacesFragment"
+            app:popUpTo="@+id/choiceOfPlacesFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
 </navigation>

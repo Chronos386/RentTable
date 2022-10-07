@@ -3,116 +3,119 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@color/show_white">
 
     <TextView
         android:id="@+id/userName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-
-        android:layout_marginTop="10dp"
         android:layout_marginStart="@dimen/left_margin"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="@dimen/left_margin"
         android:font="@font/nunito_extrabold"
-
-
         android:textColor="@color/black"
-        android:textSize="@dimen/textsize"
-
+        android:textSize="@dimen/textSize"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UnusedAttribute" />
 
     <Spinner
         android:id="@+id/spinner_city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:background="@null"
-
         android:layout_marginStart="@dimen/left_margin"
         android:layout_marginTop="5dp"
-
+        android:background="@null"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userName">
-        >
-    </Spinner>
+        app:layout_constraintTop_toBottomOf="@+id/userName" />
 
     <TextView
         android:id="@+id/list"
         android:layout_width="match_parent"
-
-
         android:layout_height="wrap_content"
-
         android:layout_marginStart="@dimen/left_margin"
-        android:layout_marginEnd="@dimen/left_margin"
         android:layout_marginTop="10dp"
-
+        android:layout_marginEnd="@dimen/left_margin"
         android:font="@font/nunito_extrabold"
-
-        android:text="Ваш список забронированных мест:"
+        android:text="@string/myRent"
         android:textColor="@color/black"
-
-        android:textSize="@dimen/textsize"
+        android:textSize="@dimen/textSize"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_city" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner_city"
+        tools:ignore="UnusedAttribute" />
 
     <Spinner
         android:id="@+id/spinner_month"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:background="@null"
-
         android:layout_marginStart="@dimen/left_margin"
         android:layout_marginTop="5dp"
-
+        android:background="@null"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/list">
-        >
-    </Spinner>
+        app:layout_constraintTop_toBottomOf="@+id/list" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewPlace"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="@dimen/left_margin"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="@dimen/left_margin"
-
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="15dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toTopOf="@+id/deleteAllRent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner_month"
-        >
-
+        app:spanCount="2">
     </androidx.recyclerview.widget.RecyclerView>
 
     <Button
-        android:id="@+id/buttonexit"
+        android:id="@+id/deleteAllRent"
         android:layout_width="0dp"
         android:layout_height="52dp"
-
         android:layout_marginLeft="@dimen/left_margin"
         android:layout_marginRight="@dimen/left_margin"
-        android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
-
-        android:background="@drawable/buttom_corner"
+        android:background="@drawable/button_corner"
         android:font="@font/roboto"
+        android:text="@string/clearData"
+        android:textSize="@dimen/buttonTextSize"
+        android:theme="@style/button.Melon"
+        app:layout_constraintBottom_toTopOf="@+id/buttonExit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="UnusedAttribute" />
 
-
-        android:text="Выход из аккаунта"
-        android:textSize="@dimen/buttonTextsize"
-        android:theme="@style/Buttom.Red"
-
+    <Button
+        android:id="@+id/buttonExit"
+        android:layout_width="0dp"
+        android:layout_height="52dp"
+        android:layout_marginLeft="@dimen/left_margin"
+        android:layout_marginRight="@dimen/left_margin"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/button_corner"
+        android:font="@font/roboto"
+        android:text="@string/exitOfAccount"
+        android:textSize="@dimen/buttonTextSize"
+        android:theme="@style/button.Red"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewPlace" />
+        tools:ignore="UnusedAttribute" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

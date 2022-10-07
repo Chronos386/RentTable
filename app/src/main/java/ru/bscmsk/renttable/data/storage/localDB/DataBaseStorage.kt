@@ -7,8 +7,8 @@ interface DataBaseStorage {
     suspend fun getUser(): UserData
 
     suspend fun saveTokens(tokens: TokensData)
-    suspend fun getAccessToken(): AccessTokenData
-    suspend fun getRefreshToken(): RefreshTokenData
+    suspend fun getAccessToken(): AccessTokenData?
+    suspend fun getRefreshToken(): RefreshTokenData?
     suspend fun refreshAccessToken(newToken: AccessTokenData)
     suspend fun refreshRefreshToken(newToken: RefreshTokenData)
 

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-    <dimen name="buttonTextsize">14sp</dimen>
-    <dimen name="radiussize">17dp</dimen>
+    <dimen name="buttonTextSize">14sp</dimen>
+    <dimen name="cityTextSize">24sp</dimen>
+    <dimen name="radiusSize">17dp</dimen>
     <dimen name ="left_margin">23dp</dimen>
-    <dimen name="textsize">20sp</dimen>
-    <dimen name ="monthsize">16sp</dimen>
+    <dimen name="textSize">20sp</dimen>
+    <dimen name ="monthSize">16sp</dimen>
 </resources>

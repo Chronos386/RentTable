@@ -1,4 +1,4 @@
-package ru.bscmsk.renttable.presentation.fragments.Rent
+package ru.bscmsk.renttable.presentation.viewModels
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -8,216 +8,248 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import ru.bscmsk.renttable.app.sealed.CitiesList
+import ru.bscmsk.renttable.app.sealed.CityInform
 import ru.bscmsk.renttable.app.sealed.DataPosted
 import ru.bscmsk.renttable.app.sealed.RentInform
-import ru.bscmsk.renttable.app.sealed.UserAuthorized
-import ru.bscmsk.renttable.domain.models.CityDomain
 import ru.bscmsk.renttable.presentation.interactors.CityInteractor
 import ru.bscmsk.renttable.presentation.interactors.RentInteractor
 import ru.bscmsk.renttable.presentation.interactors.UserInteractor
 import ru.bscmsk.renttable.presentation.models.*
-import ru.bscmsk.renttable.presentation.translateMonthtoInt
-import ru.bscmsk.renttable.presentation.translateMonthtoString
-import java.text.SimpleDateFormat
+import ru.bscmsk.renttable.app.translateMonthToString
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.collections.HashSet
 
 class RentViewModel(
     private val cityInteractor: CityInteractor,
     private val userInteractor: UserInteractor,
-    private val rentInteractor: RentInteractor): ViewModel() {
+    private val rentInteractor: RentInteractor
+) : ViewModel() {
+    private val cityListMutableLive = MutableLiveData<List<CityPresentation>>()
+    val cityListLive: LiveData<List<CityPresentation>> = cityListMutableLive
 
-    private val CityListMutableLive = MutableLiveData<List<CityPresentation>>()
-    val CityListLive: LiveData<List<CityPresentation>> = CityListMutableLive
+    private var currentTableIndexMutableLive = MutableLiveData<Int>()
+    var currentTableIndexLive: LiveData<Int> = currentTableIndexMutableLive
 
-    private var CurrentTableIndexMutableLive = MutableLiveData<Int>()
-    var CurrentTableIndexLive: LiveData<Int> = CurrentTableIndexMutableLive
+    private var userCityListMutableLive = MutableLiveData<List<CityPresentation>>()
+    var userCityListLive: LiveData<List<CityPresentation>> = userCityListMutableLive
 
-    private var UserCityListMutableLive = MutableLiveData<List<CityPresentation>>()
-    var UserCityListLive: LiveData<List<CityPresentation>> = UserCityListMutableLive
+    private var userDataListMutableLive = MutableLiveData<List<DateWithPlace>>()
+    var userDataListLive: LiveData<List<DateWithPlace>> = userDataListMutableLive
 
-    private var UserDataListMutableLive = MutableLiveData<List<DateWithPlace>>()
-    var UserDataListLive: LiveData<List<DateWithPlace>> = UserDataListMutableLive
-
-    private var RentOneTableListMutableLive = MutableLiveData<List<RentOneTable>>()
-    var RentOneTableListLive: LiveData<List<RentOneTable>> = RentOneTableListMutableLive
-
-
-    private var ExitAccountMutableLive = MutableLiveData<Boolean>()
-    var ExitAccountLive: LiveData<Boolean> = ExitAccountMutableLive
-
-    private val FreeTablesListMutableLive = MutableLiveData<List<RentFewTables>>()
-    val FreeTablesListLive: LiveData<List<RentFewTables>> = FreeTablesListMutableLive
-
-    private val DataDiapozonMutableLive = MutableLiveData<List<String>>()
-    val DataDiapozonLive: LiveData<List<String>> = DataDiapozonMutableLive
+    private var rentOneTableListMutableLive = MutableLiveData<List<RentOneTable>>()
+    var rentOneTableListLive: LiveData<List<RentOneTable>> = rentOneTableListMutableLive
 
 
-    private var saveSuccessMutableLive = MutableLiveData<Boolean>() //Тип можно заменить
+    private var exitAccountMutableLive = MutableLiveData<Boolean>()
+    var exitAccountLive: LiveData<Boolean> = exitAccountMutableLive
+
+    private val freeTablesListMutableLive = MutableLiveData<List<RentFewTables>>()
+    val freeTablesListLive: LiveData<List<RentFewTables>> = freeTablesListMutableLive
+
+    private val dataRangeMutableLive = MutableLiveData<List<String>>()
+    val dataRangeLive: LiveData<List<String>> = dataRangeMutableLive
+
+    private var saveSuccessMutableLive = MutableLiveData<Boolean>()
     var saveSuccessLive: LiveData<Boolean> = saveSuccessMutableLive
 
+    private var deleteSuccessMutableLive = MutableLiveData<Boolean>()
+    var deleteSuccessLive: LiveData<Boolean> = deleteSuccessMutableLive
 
-    fun getCityFromDB():LiveData<CityPresentation>{
-        var result = MutableLiveData<CityPresentation>()
-        viewModelScope.launch {
-            result.value = cityInteractor.getCity()
-        }
-        return result
+    private var cityInformMutableLive = MutableLiveData<CityInformPresentation>()
+    var cityInformLive: LiveData<CityInformPresentation> = cityInformMutableLive
+
+    fun getCityFromDB(): CityPresentation = runBlocking {
+        CityPresentation(cityInteractor.getCity().name)
     }
 
     fun getCityList() =
         viewModelScope.launch {
             cityInteractor.getCitiesList().let {
                 when (it) {
-                    is CitiesList.ListPresentationReceived -> CityListMutableLive.value =
+                    is CitiesList.ListPresentationReceived -> cityListMutableLive.value =
                         it.citiesList
-                    else -> ExitAccount()
+                    else -> exitAccount()
                 }
             }
         }
 
-    fun getUser():LiveData<UserPresentation>{
-
-        val UsernameMutableLive = MutableLiveData<UserPresentation>()
-        viewModelScope.launch {
-            UsernameMutableLive.value = userInteractor.getUser()
-        }
-        return UsernameMutableLive
+    fun getUser(): UserPresentation = runBlocking {
+        userInteractor.getUser()
     }
-
 
     fun getUserCityList() =
         viewModelScope.launch {
             cityInteractor.getCitiesList().let {
                 when (it) {
                     is CitiesList.ListPresentationReceived -> {
-                        var UserCityList: ArrayList<CityPresentation> = ArrayList<CityPresentation>()
-
-                        it.citiesList.forEach {city->
-                            rentInteractor.getMyRent(city).let{
-                                when (it) {
-                                    is RentInform.RentPresentationReceived ->
-                                    {
-                                        if (it.rentList.size !=0)
-                                        {
-                                            UserCityList.add(CityPresentation(it.rentList[0].region))
+                        val userCityList: ArrayList<CityPresentation> = ArrayList()
+                        it.citiesList.forEach { city ->
+                            rentInteractor.getMyRent(city).let { myRent ->
+                                when (myRent) {
+                                    is RentInform.RentPresentationReceived -> {
+                                        if (myRent.rentList.isNotEmpty()) {
+                                            userCityList.add(city)
                                         }
                                     }
-                                    else -> ExitAccountMutableLive.value = true
+                                    else -> exitAccountMutableLive.value = true
                                 }
                             }
                         }
-                        UserCityListMutableLive.value = UserCityList
+                        userCityListMutableLive.value = userCityList
                     }
-                    else -> ExitAccount()
+                    else -> exitAccount()
                 }
             }
         }
 
     fun getUserData(city: CityPresentation) =
-        viewModelScope.launch {
-            rentInteractor.getMyRent(city).let{
+        runBlocking {
+            rentInteractor.getMyRent(city).let {
                 when (it) {
                     is RentInform.RentPresentationReceived -> {
-                        UserDataListMutableLive.value = it.rentList[0].datesWithPlaces
+                        val result = ArrayList<DateWithPlace>()
+                        if (it.rentList.isNotEmpty()) {
+                            it.rentList[0].datesWithPlaces.forEach { it1 ->
+                                if (it1.date >= LocalDate.now() && it1.date <= LocalDate.now()
+                                        .plusDays(30)
+                                ) {
+                                    result.add(it1)
+                                }
+                            }
+                        }
+                        userDataListMutableLive.value = result
                     }
-                    else -> ExitAccount()
+                    else -> exitAccount()
                 }
             }
         }
 
-
-    fun getTables(city:CityPresentation):List<Table>{
-        val tables = ArrayList<Table>()
-        for (i in 1..20)
-            tables.add(Table(i))
-        return tables.toList()
+    fun getTables(): List<TablePresentation> {
+        var tables: ArrayList<TablePresentation> = arrayListOf()
+        getCityInform()
+        cityInformMutableLive.value.let {
+            if (it != null) {
+                tables = it.places as ArrayList<TablePresentation>
+            }
+        }
+        return tables
     }
 
-    fun getDaysWithAllTables(city:CityPresentation,firstDate:String,endDate:String)=
+    fun getCityInform() = runBlocking {
+        cityInteractor.getCityInform().let {
+            when (it) {
+                is CityInform.InformPresentationReceived -> {
+                    cityInformMutableLive.value = it.cityInformPresentation
+                }
+                else -> exitAccount()
+            }
+        }
+    }
+
+    fun getDaysWithAllTables(firstDate: String, endDate: String) =
         viewModelScope.launch {
-            rentInteractor.getRent(city).let{
+            val city = getCityFromDB()
+            rentInteractor.getRent(city).let {
                 when (it) {
                     is RentInform.RentPresentationReceived -> {
-                        val result : ArrayList<RentFewTables> = ArrayList()
-                        var fDate = LocalDate.parse(firstDate.replace('/', '.').replace('-', '.'),
-                            DateTimeFormatter.ofPattern("dd.MM.yyyy"))
-                        var eDate = LocalDate.parse(endDate.replace('/', '.').replace('-', '.'),
-                            DateTimeFormatter.ofPattern("dd.MM.yyyy"))
-                        if(fDate>eDate){
-                            FreeTablesListMutableLive.value = result
-                        }
-                        else{
+                        println("lol" + it.rentList)
+                        val result: ArrayList<RentFewTables> = ArrayList()
+                        var fDate = LocalDate.parse(
+                            firstDate.replace('/', '.').replace('-', '.'),
+                            DateTimeFormatter.ofPattern("dd.MM.yyyy")
+                        )
+                        var eDate = LocalDate.parse(
+                            endDate.replace('/', '.').replace('-', '.'),
+                            DateTimeFormatter.ofPattern("dd.MM.yyyy")
+                        )
+                        if (fDate > eDate) {
+                            freeTablesListMutableLive.value = result
+                        } else {
                             if (fDate < LocalDate.now())
                                 fDate = LocalDate.now()
                             if (eDate > LocalDate.now().plusDays(30))
                                 eDate = LocalDate.now().plusDays(30)
                             var date = fDate
-                            val tables = getTables(city)
-                            while(date<=eDate) {
-                                result.add(RentFewTables(date,tables,0))
+                            val tables = getTables()
+                            while (date <= eDate) {
+                                result.add(RentFewTables(date, tables, 0))
                                 date = date.plusDays(1)
                             }
-
+                            val lUser = getUser()
                             it.rentList.forEach { rentList ->
                                 rentList.datesWithPlaces.forEach { datesWithPlaces ->
-                                    if(datesWithPlaces.date>=fDate && datesWithPlaces.date<=eDate)
-                                    {
-                                        val tab = result[result.indexOf(result.filter { it.Date==datesWithPlaces.date}[0])].Tablelist.toMutableList()
-                                        tab.removeAt(tab.indexOf(tab.filter { it.number==datesWithPlaces.place }[0]))
-                                        result[result.indexOf(result.filter { it.Date==datesWithPlaces.date}[0])].Tablelist = tab
+                                    if (datesWithPlaces.date >= fDate && datesWithPlaces.date <= eDate) {
+                                        val tab =
+                                            result[result.indexOf(result.filter { it1 -> it1.date == datesWithPlaces.date }[0])].tableList.toMutableList()
+                                        if (rentList.user == lUser.login)
+                                            tab.clear()
+                                        else {
+                                            if (tab.isNotEmpty())
+                                                tab.removeAt(tab.indexOf(tab.filter { it1 -> it1.number == datesWithPlaces.place }[0]))
+                                        }
+                                        result[result.indexOf(result.filter { it1 -> it1.date == datesWithPlaces.date }[0])].tableList =
+                                            tab
                                     }
                                 }
                             }
-                            result.forEach {
-                                if(it.Tablelist.isEmpty())
-                                    result.remove(it)
+                            val del: ArrayList<RentFewTables> = ArrayList()
+                            result.forEach { it1 ->
+                                if (it1.tableList.isEmpty())
+                                    del.add(it1)
                             }
-                            FreeTablesListMutableLive.value = result
+                            del.forEach { it1 ->
+                                result.remove(it1)
+                            }
+                            freeTablesListMutableLive.value = result
                         }
                     }
-                    else -> ExitAccount()
+                    else -> exitAccount()
                 }
             }
         }
 
-    fun changeIndex(newindex: Int){
-        CurrentTableIndexMutableLive.value = newindex
+
+    fun changeTableIndex(newIndex: Int) {
+        currentTableIndexMutableLive.value = newIndex
     }
 
-    fun getDaysListWithOneTable(city:CityPresentation,table: Table,month: Month)=
-        viewModelScope.launch {
-            rentInteractor.getRent(city).let{
+    fun getDaysListWithOneTable(city: CityPresentation, table: TablePresentation, month: Month) =
+        runBlocking {
+            rentInteractor.getRent(city).let {
                 when (it) {
                     is RentInform.RentPresentationReceived -> {
-                        val dates : ArrayList<RentOneTable> = ArrayList()
+                        val dates: ArrayList<RentOneTable> = ArrayList()
                         var date = LocalDate.now()
-                        while (date<=LocalDate.now().plusDays(30))
-                        {
+                        while (date <= LocalDate.now().plusDays(30)) {
                             dates.add(RentOneTable(date, String()))
                             date = date.plusDays(1)
                         }
-                        val result = dates.filter {data -> translateMonthtoString(data.Date.month.value)==month.name } as ArrayList<RentOneTable>
+                        val result =
+                            dates.filter { data -> translateMonthToString(data.date.month.value) == month.name } as ArrayList<RentOneTable>
                         it.rentList.forEach { rentList ->
-                            rentList.datesWithPlaces.filter{translateMonthtoString(it.date.month.value) == month.name}
+                            rentList.datesWithPlaces.filter { date -> translateMonthToString(date.date.month.value) == month.name }
                                 .forEach { datesWithPlaces ->
-                                    if (datesWithPlaces.place == table.number)
-                                        result[result.indexOf(RentOneTable(datesWithPlaces.date,String()))]= RentOneTable(datesWithPlaces.date,rentList.user)
-                            }
+                                    if (datesWithPlaces.place == table.number && datesWithPlaces.date >= LocalDate.now())
+                                        result[result.indexOf(
+                                            RentOneTable(
+                                                datesWithPlaces.date,
+                                                String()
+                                            )
+                                        )] = RentOneTable(datesWithPlaces.date, rentList.user)
+                                }
                         }
-                        RentOneTableListMutableLive.value = result
+                        rentOneTableListMutableLive.value = result
                     }
-                    else -> ExitAccount()
+                    else -> exitAccount()
                 }
             }
         }
 
-    fun rentListTables(newRent : NewBookingPresentation)=
-        viewModelScope.launch {
-            rentInteractor.sendNewRentList(newRent).let {
+    fun rentListTables(newRent: NewBookingPresentation) =
+        runBlocking {
+            Log.e("AAA", "Сохранено")
+            rentInteractor.sendNewRent(newRent).let {
                 when (it) {
                     is DataPosted.IsPosted -> {
                         saveSuccessMutableLive.value = true
@@ -225,21 +257,57 @@ class RentViewModel(
                     is DataPosted.NotPosted -> {
                         saveSuccessMutableLive.value = false
                     }
-                    else -> ExitAccount()
+                    else -> exitAccount()
+                }
+            }
+        }
+
+    fun exitAccount() =
+        viewModelScope.launch {
+            userInteractor.exitAccount()
+            exitAccountMutableLive.value = true
+        }
+
+    fun saveData(DataStart: String, DataEnd: String) {
+        dataRangeMutableLive.value = listOf(DataStart, DataEnd)
+    }
+
+
+    fun changeDataIndex(date: LocalDate, currentIndex: Int) {
+        freeTablesListMutableLive.value.let { it1 ->
+            it1?.get(it1.indexOf(it1.filter { it.date == date }[0]))?.currentIndex = currentIndex
+        }
+    }
+
+    fun deleteRent(rent: NewBookingPresentation) =
+        runBlocking {
+            Log.e("AAA", "Удалено")
+            rentInteractor.deleteRent(rent).let {
+                when (it) {
+                    is DataPosted.IsPosted -> {
+                        deleteSuccessMutableLive.value = true
+                    }
+                    is DataPosted.NotPosted -> {
+                        deleteSuccessMutableLive.value = false
+                    }
+                    else -> exitAccount()
                 }
             }
         }
 
 
-    fun ExitAccount() =
-        viewModelScope.launch {
-            userInteractor.exitAccount()
-            ExitAccountMutableLive.value = true
+    fun deleteAllRent(city: CityPresentation) =
+        runBlocking {
+            rentInteractor.clearMyRent(city).let {
+                when (it) {
+                    is DataPosted.IsPosted -> {
+                        deleteSuccessMutableLive.value = true
+                    }
+                    is DataPosted.NotPosted -> {
+                        deleteSuccessMutableLive.value = false
+                    }
+                    else -> exitAccount()
+                }
+            }
         }
-
-
-    fun saveData(DataStart:String, DataEnd:String){
-        DataDiapozonMutableLive.value = listOf(DataStart,DataEnd)
-    }
-
 }

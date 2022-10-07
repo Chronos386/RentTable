@@ -6,6 +6,6 @@ import androidx.room.PrimaryKey
 @Entity
 data class CityModel(
     @PrimaryKey
-    var id:Int,
+    var id: Int,
     val name: String
 )

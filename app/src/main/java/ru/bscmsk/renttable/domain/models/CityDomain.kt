@@ -1,5 +1,5 @@
 package ru.bscmsk.renttable.domain.models
 
-data class CityDomain (
+data class CityDomain(
     val name: String
 )

@@ -6,7 +6,7 @@ import ru.bscmsk.renttable.data.storage.localDB.entity.AccessTokenModel
 @Dao
 interface AccessTokenDao {
     @Query("SELECT * FROM AccessTokenModel")
-    suspend fun get(): AccessTokenModel
+    suspend fun get(): AccessTokenModel?
 
     @Insert
     suspend fun insert(genre: AccessTokenModel)

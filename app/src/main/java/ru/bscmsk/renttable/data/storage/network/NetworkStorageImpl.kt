@@ -1,9 +1,7 @@
 package ru.bscmsk.renttable.data.storage.network
 
-import ru.bscmsk.renttable.app.sealed.CitiesList
-import ru.bscmsk.renttable.app.sealed.DataPosted
-import ru.bscmsk.renttable.app.sealed.RentInform
-import ru.bscmsk.renttable.app.sealed.Returnable
+import ru.bscmsk.renttable.app.sealed.*
+import ru.bscmsk.renttable.app.toData
 import ru.bscmsk.renttable.data.storage.models.*
 import javax.inject.Inject
 
@@ -33,6 +31,14 @@ class NetworkStorageImpl @Inject constructor(
             }
         }
 
+    override suspend fun getCityInform(city: CityData, accessToken: AccessTokenData): Returnable =
+        api.getCityInform(city.name, TOKEN_PREFIX + accessToken.token).body().let {
+            return when (it) {
+                null -> Returnable.OldTokens
+                else -> CityInform.InformReceived(it)
+            }
+        }
+
     override suspend fun getMyRent(
         city: CityData,
         accessToken: AccessTokenData
@@ -53,17 +59,44 @@ class NetworkStorageImpl @Inject constructor(
         }
 
 
-    override suspend fun sendNewListRent(
+    override suspend fun sendNewRent(
         newBooking: NewBookingData,
         accessToken: AccessTokenData
     ): Returnable =
-        api.sendNewListBooking(newBooking, TOKEN_PREFIX + accessToken.token).code().let {
+        api.sendNewBooking(newBooking, TOKEN_PREFIX + accessToken.token).code().let {
             when (it) {
                 200 -> DataPosted.IsPosted
                 409 -> DataPosted.NotPosted
                 else -> Returnable.OldTokens
             }
         }
+
+    override suspend fun clearMyRent(city: CityData, accessToken: AccessTokenData): Returnable {
+        api.clearMyBooking(
+            ClearBooking(region = city.name, dates = ArrayList(), places = ArrayList()).toData(),
+            TOKEN_PREFIX + accessToken.token
+        ).code().let {
+            return when (it) {
+                200 -> DataPosted.IsPosted
+                409 -> DataPosted.NotPosted
+                else -> Returnable.OldTokens
+            }
+        }
+    }
+
+
+    override suspend fun deleteRent(
+        booking: NewBookingData,
+        accessToken: AccessTokenData
+    ): Returnable =
+        api.deleteBooking(booking, TOKEN_PREFIX + accessToken.token).code().let {
+            when (it) {
+                200 -> DataPosted.IsPosted
+                409 -> DataPosted.NotPosted
+                else -> Returnable.OldTokens
+            }
+        }
+
 
     private companion object {
         private const val TOKEN_PREFIX = "Bearer "

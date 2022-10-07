@@ -1,6 +1,6 @@
 package ru.bscmsk.renttable.domain.models
 
-data class UserDomain (
+data class UserDomain(
     val login: String,
     val password: String
 )

@@ -7,8 +7,8 @@ import ru.bscmsk.renttable.presentation.viewModels.LoginViewModel
 
 class LoginViewModelFactory(
     private val userInteractor: UserInteractor
-): ViewModelProvider.Factory {
-    override fun <T: ViewModel> create(modelClass: Class<T>): T{
+) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return LoginViewModel(
             userInteractor = userInteractor
         ) as T

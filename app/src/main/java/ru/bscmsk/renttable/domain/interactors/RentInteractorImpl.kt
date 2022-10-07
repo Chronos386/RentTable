@@ -38,6 +38,12 @@ class RentInteractorImpl @Inject constructor(
             }
         }
 
-    override suspend fun sendNewRentList(newRent: NewBookingPresentation): Returnable =
-        rentRepository.sendNewListRentByCity(newRent.toDomain())
+    override suspend fun sendNewRent(newRent: NewBookingPresentation): Returnable =
+        rentRepository.sendNewRentByCity(newRent.toDomain())
+
+    override suspend fun clearMyRent(city: CityPresentation): Returnable =
+        rentRepository.clearMyRent(city.toDomain())
+
+    override suspend fun deleteRent(rent: NewBookingPresentation): Returnable =
+        rentRepository.deleteRent(rent.toDomain())
 }

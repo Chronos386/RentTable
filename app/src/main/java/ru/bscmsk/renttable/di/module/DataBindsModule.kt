@@ -21,7 +21,7 @@ import ru.bscmsk.renttable.presentation.interactors.UserInteractor
 import javax.inject.Singleton
 
 @Module
-interface  DataBindsModule {
+interface DataBindsModule {
 
     @Binds
     @Singleton

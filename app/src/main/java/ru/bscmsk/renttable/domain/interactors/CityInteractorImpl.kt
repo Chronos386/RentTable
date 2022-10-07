@@ -1,6 +1,7 @@
 package ru.bscmsk.renttable.domain.interactors
 
 import ru.bscmsk.renttable.app.sealed.CitiesList
+import ru.bscmsk.renttable.app.sealed.CityInform
 import ru.bscmsk.renttable.app.sealed.Returnable
 import ru.bscmsk.renttable.app.toDomain
 import ru.bscmsk.renttable.app.toPresentation
@@ -20,6 +21,14 @@ class CityInteractorImpl @Inject constructor(
                     it.citiesList.forEach { i -> listOfCityName.add(i.toPresentation()) }
                     CitiesList.ListPresentationReceived(listOfCityName)
                 }
+                else -> it
+            }
+        }
+
+    override suspend fun getCityInform(): Returnable =
+        cityRepository.getCityInform().let {
+            when (it) {
+                is CityInform.InformDomainReceived -> CityInform.InformPresentationReceived(it.cityInformDomain.toPresentation())
                 else -> it
             }
         }

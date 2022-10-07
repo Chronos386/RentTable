@@ -1,6 +1,5 @@
 package ru.bscmsk.renttable.presentation.viewModels
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -21,8 +20,8 @@ class CityListViewModel(
     private var gotoRentLiveMutable = MutableLiveData<Boolean>()
     val gotoRentLive: LiveData<Boolean> = gotoRentLiveMutable
 
-    private var ExitAccountMutableLive = MutableLiveData<Boolean>()
-    var ExitAccountLive: LiveData<Boolean> = ExitAccountMutableLive
+    private var exitAccountMutableLive = MutableLiveData<Boolean>()
+    var exitAccountLive: LiveData<Boolean> = exitAccountMutableLive
 
     fun getCityClick(city: CityPresentation) =
         viewModelScope.launch {
@@ -38,15 +37,15 @@ class CityListViewModel(
                         resultLiveMutable.value = it.citiesList as ArrayList<CityPresentation>
 
                     }
-                    else -> ExitAccount()
+                    else -> exitAccount()
                 }
             }
         }
 
-    fun ExitAccount() =
+    private fun exitAccount() =
         viewModelScope.launch {
             userInteractor.exitAccount()
-            ExitAccountMutableLive.value = true
+            exitAccountMutableLive.value = true
         }
 }
 

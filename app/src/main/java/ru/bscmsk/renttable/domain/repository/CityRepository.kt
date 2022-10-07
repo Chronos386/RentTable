@@ -5,6 +5,7 @@ import ru.bscmsk.renttable.domain.models.CityDomain
 
 interface CityRepository {
     suspend fun getCitiesList(): Returnable
+    suspend fun getCityInform(): Returnable
     suspend fun saveCity(city: CityDomain)
     suspend fun getCity(): CityDomain
     suspend fun updateCity(city: CityDomain)

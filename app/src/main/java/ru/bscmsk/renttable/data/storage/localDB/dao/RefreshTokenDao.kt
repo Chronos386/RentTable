@@ -6,7 +6,7 @@ import ru.bscmsk.renttable.data.storage.localDB.entity.RefreshTokenModel
 @Dao
 interface RefreshTokenDao {
     @Query("SELECT * FROM RefreshTokenModel")
-    suspend fun get(): RefreshTokenModel
+    suspend fun get(): RefreshTokenModel?
 
     @Insert
     suspend fun insert(genre: RefreshTokenModel)

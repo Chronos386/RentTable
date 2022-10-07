@@ -2,11 +2,9 @@ package ru.bscmsk.renttable.app
 
 import android.app.Application
 import android.content.Context
-import ru.bscmsk.renttable.BuildConfig
 import ru.bscmsk.renttable.di.AppComponent
 import ru.bscmsk.renttable.di.DaggerAppComponent
 import ru.bscmsk.renttable.di.module.ContextModule
-import timber.log.Timber
 
 class MainApp : Application() {
     lateinit var appComponent: AppComponent
@@ -17,7 +15,6 @@ class MainApp : Application() {
             .builder()
             .contextModule(ContextModule(applicationContext))
             .build()
-
     }
 }
 

@@ -6,6 +6,6 @@ import androidx.room.PrimaryKey
 @Entity
 data class RefreshTokenModel(
     @PrimaryKey
-    var id:Int,
-    val token:String
+    var id: Int,
+    val token: String
 )

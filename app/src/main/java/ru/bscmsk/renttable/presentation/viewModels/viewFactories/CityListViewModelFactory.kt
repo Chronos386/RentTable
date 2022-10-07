@@ -9,8 +9,8 @@ import ru.bscmsk.renttable.presentation.viewModels.CityListViewModel
 class CityListViewModelFactory(
     val cityInteractor: CityInteractor,
     val userInteractor: UserInteractor
-): ViewModelProvider.Factory {
-    override fun <T: ViewModel> create(modelClass: Class<T>): T{
+) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return CityListViewModel(
             cityInteractor = cityInteractor,
             userInteractor = userInteractor

@@ -1,5 +1,5 @@
 package ru.bscmsk.renttable.presentation.models
 
-class Table(
+data class TablePresentation(
     val number: Int
 )

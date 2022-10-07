@@ -12,7 +12,7 @@ import javax.inject.Inject
 class UserRepositoryImpl @Inject constructor(
     private val networkStorage: NetworkStorage,
     private val dataBaseStorage: DataBaseStorage
-): UserRepository {
+) : UserRepository {
     override suspend fun sendUserToServ(user: UserDomain): UserAuthorized =
         networkStorage.enterToAccount(user.toData()).let { newTokens ->
             when (newTokens) {

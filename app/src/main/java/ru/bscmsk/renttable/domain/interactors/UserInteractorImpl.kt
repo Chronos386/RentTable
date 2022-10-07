@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 class UserInteractorImpl @Inject constructor(
     private val userRepository: UserRepository
-): UserInteractor {
+) : UserInteractor {
     override suspend fun enterAccount(user: UserPresentation): UserAuthorized =
         userRepository.sendUserToServ(user.toDomain())
 

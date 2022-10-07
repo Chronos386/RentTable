@@ -1,6 +1,6 @@
 package ru.bscmsk.renttable.presentation.models
 
-data class UserPresentation (
+data class UserPresentation(
     val login: String,
     val password: String
 )

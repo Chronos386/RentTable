@@ -7,8 +7,8 @@ import ru.bscmsk.renttable.presentation.viewModels.CommonRentViewModel
 
 class CommonRentViewModelFactory(
     val cityInteractor: CityInteractor
-): ViewModelProvider.Factory {
-    override fun <T: ViewModel> create(modelClass: Class<T>): T{
+) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return CommonRentViewModel(
             cityInteractor = cityInteractor
         ) as T

@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.bscmsk.renttable.MainActivity
@@ -17,7 +16,6 @@ import ru.bscmsk.renttable.presentation.interfaces.CityInterface
 import ru.bscmsk.renttable.presentation.models.CityPresentation
 import ru.bscmsk.renttable.presentation.viewModels.CityListViewModel
 import ru.bscmsk.renttable.presentation.viewModels.viewFactories.CityListViewModelFactory
-
 
 class CityListFragment : Fragment() {
     private lateinit var binding: FragmentCitylistBinding
@@ -34,6 +32,7 @@ class CityListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
+        (activity as MainActivity).supportActionBar?.hide()
         binding = FragmentCitylistBinding.inflate(inflater, container, false)
         viewModel.getCities()
         viewModel.resultLive.observe(viewLifecycleOwner) {
@@ -41,11 +40,11 @@ class CityListFragment : Fragment() {
             createList()
         }
 
-        viewModel.gotoRentLive.observe(viewLifecycleOwner){
+        viewModel.gotoRentLive.observe(viewLifecycleOwner) {
             findNavController().navigate(CityListFragmentDirections.actionCityListFragmentToRentFragment())
         }
 
-        viewModel.ExitAccountLive.observe(viewLifecycleOwner){
+        viewModel.exitAccountLive.observe(viewLifecycleOwner) {
             (activity as MainActivity).gotoLoginFragment()
         }
         return binding.root
@@ -55,7 +54,7 @@ class CityListFragment : Fragment() {
         val linearLayoutManager = LinearLayoutManager(requireContext())
         linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.recyclerView.layoutManager = linearLayoutManager
-        val adapter = CitiesAdapter(context = requireContext(), list = cityList, object :
+        val adapter = CitiesAdapter(list = cityList, object :
             CityInterface {
             override fun onClicked(city: CityPresentation) {
                 viewModel.getCityClick(city)

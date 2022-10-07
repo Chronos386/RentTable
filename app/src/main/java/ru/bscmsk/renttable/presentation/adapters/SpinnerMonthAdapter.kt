@@ -7,18 +7,18 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import ru.bscmsk.renttable.databinding.SpinnerMonthItemBinding
-import ru.bscmsk.renttable.presentation.models.CityPresentation
 import ru.bscmsk.renttable.presentation.models.Month
 
 class SpinnerMonthAdapter(
     context: Context,
-    val list: List<Month>) :
-    ArrayAdapter<Month>(context, 0, list){
-
+    val list: List<Month>
+) :
+    ArrayAdapter<Month>(context, 0, list) {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val data = list[position]
-        var retView = SpinnerMonthItemBinding.inflate(
-            LayoutInflater.from(parent.context),parent,false)
+        val retView = SpinnerMonthItemBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false
+        )
         retView.font.text = data.name
         return retView.root
     }

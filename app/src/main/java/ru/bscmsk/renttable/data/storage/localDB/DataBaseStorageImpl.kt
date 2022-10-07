@@ -37,11 +37,11 @@ class DataBaseStorageImpl @Inject constructor(
         refreshTokenDao.insert(tokens.toRefresh().toTable())
     }
 
-    override suspend fun getAccessToken(): AccessTokenData =
-        accessTokenDao.get().toData()
+    override suspend fun getAccessToken(): AccessTokenData? =
+        accessTokenDao.get()?.toData()
 
-    override suspend fun getRefreshToken(): RefreshTokenData =
-        refreshTokenDao.get().toData()
+    override suspend fun getRefreshToken(): RefreshTokenData? =
+        refreshTokenDao.get()?.toData()
 
     override suspend fun refreshAccessToken(newToken: AccessTokenData) =
         accessTokenDao.update(newToken.toTable())

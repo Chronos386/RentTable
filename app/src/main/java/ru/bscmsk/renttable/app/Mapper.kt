@@ -125,3 +125,20 @@ fun NewBookingPresentation.toDomain() = NewBookingDomain(
     places = this.datesWithPlaces.map { it.place },
     dates = this.datesWithPlaces.map { it.date }
 )
+
+
+fun CityInformData.toDomain() = CityInformDomain(
+    imageUrl = this.imageUrl,
+    places = this.places.map { TableDomain(number = it.toInt()) }
+)
+
+fun CityInformDomain.toPresentation() = CityInformPresentation(
+    imageUrl = this.imageUrl,
+    places = this.places.map { TablePresentation(number = it.number) }
+)
+
+
+fun ClearBooking.toData() = NewBookingData(
+    region = this.region,
+    dateWithPlace = this.dates.map { it.toString() }.zip(this.places.map { it.toString() }).toMap()
+)

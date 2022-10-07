@@ -7,102 +7,60 @@
     android:background="@color/show_white">
 
 
-    <TextView
-        android:id="@+id/text0"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-
-
-        android:layout_marginStart="@dimen/left_margin"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="150dp"
-        android:layout_marginBottom="40dp"
-
-        android:font="@font/nunito_extrabold"
-        android:text="@string/rent"
-        android:textColor="@color/black"
-        android:textSize="@dimen/textsize"
-
-        app:layout_constraintBottom_toTopOf="@+id/map"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
 
     <ImageView
         android:id="@+id/userImage"
         android:layout_width="25dp"
         android:layout_height="20dp"
-        android:src = "@drawable/img"
-
         android:layout_marginTop="12dp"
         android:layout_marginEnd="25dp"
-
-
+        android:contentDescription="@string/Hello_login_fragment"
+        android:src="@drawable/img"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-
-
-        app:layout_constraintStart_toEndOf="@+id/text0"
         app:layout_constraintTop_toTopOf="parent">
-
     </ImageView>
-
 
     <Spinner
         android:id="@+id/spinner_city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/left_margin"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
+        android:background="@null"
         app:layout_constraintBottom_toTopOf="@+id/map"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@null">
-
-    </Spinner>
-
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/map"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-
-
-
+        android:layout_height="200dp"
         android:layout_marginStart="@dimen/left_margin"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="45dp"
         android:layout_marginEnd="22dp"
         android:layout_marginBottom="5dp"
 
-        android:background="@drawable/table_style_default"
-        app:layout_constraintBottom_toTopOf="@+id/Places_fragmentContainer"
+        android:contentDescription="@string/Hello_login_fragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-
-
         app:layout_constraintVertical_bias="0.0">
-
     </ImageView>
+    <!--android:background="@drawable/table_style_default"-->
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/Places_fragmentContainer"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="280dp"
+        android:layout_marginTop="15dp"
+        app:defaultNavHost="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        app:navGraph ="@navigation/rent_graph_nav"
-        app:defaultNavHost = "true"
-
-
-
-        />
-    <!---->
+        app:layout_constraintTop_toBottomOf="@+id/map"
+        app:navGraph="@navigation/rent_graph_nav" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

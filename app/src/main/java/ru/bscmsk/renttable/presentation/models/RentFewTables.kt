@@ -3,7 +3,7 @@ package ru.bscmsk.renttable.presentation.models
 import java.time.LocalDate
 
 class RentFewTables(
-    val Date: LocalDate,
-    var Tablelist: List<Table>,
+    val date: LocalDate,
+    var tableList: List<TablePresentation>,
     var currentIndex: Int
 )

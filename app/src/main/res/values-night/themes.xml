@@ -1,16 +1,34 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.RentTable" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.RentTable" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorPrimary">@color/show_white</item>
+        <item name="colorPrimaryVariant">@color/show_white</item>
+        <item name="actionBarTheme">@style/ThemeOverlay.Actionbar</item>
+        <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <!--<item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>-->
-        <!-- Customize your theme here. -->
+        <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
+        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
     </style>
+
+    <style name="ThemeOverlay.Actionbar" parent="ThemeOverlay.MaterialComponents.ActionBar.Surface" >
+        <item name="android:textColorPrimary">@color/black</item>
+    </style>
+
+    <style name="button.Melon" parent="ThemeOverlay.AppCompat">
+        <item name="colorPrimary">@color/melon</item>
+    </style>
+
+    <style name="button.Red" parent="ThemeOverlay.AppCompat">
+        <item name="colorPrimary">@color/red</item>
+    </style>
+
+    <style parent="@android:style/Widget.Spinner" name="SpinnerWithNoArrow">
+        <item name="android:background">@android:drawable/edit_text</item>
+    </style>
+
 </resources>

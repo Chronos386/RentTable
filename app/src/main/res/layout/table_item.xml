@@ -12,6 +12,6 @@
         android:layout_centerInParent="true"
         android:text="@string/place"
         android:textColor="@color/black"
-        android:textSize="@dimen/buttonTextsize" />
+        android:textSize="@dimen/buttonTextSize" />
 
 </RelativeLayout>
